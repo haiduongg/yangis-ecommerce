@@ -7,7 +7,12 @@ interface INavigate {
 
 const navigates: INavigate[] = [
     { id: 1, path: '/', label: 'Home' },
-    { id: 2, path: '/contact', label: 'Contact' },
+    {
+        id: 2,
+        path: 'https://www.facebook.com/hyang.309',
+        label: 'Contact',
+        isDirection: true,
+    },
     { id: 3, path: '/about', label: 'About' },
     { id: 4, path: '/signup', label: 'Sign Up' },
 ]
