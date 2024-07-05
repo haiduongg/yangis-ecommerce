@@ -44,7 +44,9 @@ function Breadcrumbs({ breadcrumbs }: { breadcrumbs: IBreadcrumb[] }) {
                                         </BreadcrumbPage>
                                     )}
                                 </BreadcrumbItem>
-                                {!isCurrentPage && <BreadcrumbSeparator />}
+                                {isCurrentPage == false && (
+                                    <BreadcrumbSeparator />
+                                )}
                             </div>
                         )
                     })}

@@ -7,14 +7,15 @@ interface INavigate {
 
 const navigates: INavigate[] = [
     { id: 1, path: '/', label: 'Home' },
+    { id: 2, path: '/products', label: 'Shop' },
     {
-        id: 2,
+        id: 3,
         path: 'https://www.facebook.com/hyang.309',
         label: 'Contact',
         isDirection: true,
     },
-    { id: 3, path: '/about', label: 'About' },
-    { id: 4, path: '/signup', label: 'Sign Up' },
+    { id: 4, path: '/about', label: 'About' },
+    { id: 5, path: '/signup', label: 'Sign Up' },
 ]
 
 export default navigates
