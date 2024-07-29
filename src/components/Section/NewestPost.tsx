@@ -18,11 +18,11 @@ function NewestPost() {
                     <rect width="20" height="40" rx="4" fill="#DB4444" />
                 </svg>
                 <p className="font-semibold text-base leading-[20px] text-[#DB4444]">
-                    Our Artical
+                    Bài viết
                 </p>
             </div>
             <h2 className="mt-[20px] text-[36px] leading-[48px] font-semibold tracking-[4%]">
-                Newest Post
+                Bài viết mới nhất
             </h2>
 
             <div className="mt-[60px] grid grid-cols-4 grid-rows-2 gap-x-[30px] gap-y-[32px] h-[600px]">

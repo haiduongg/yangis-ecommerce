@@ -17,20 +17,20 @@ function BestSelling() {
                     <rect width="20" height="40" rx="4" fill="#DB4444" />
                 </svg>
                 <p className="font-semibold text-base leading-[20px] text-[#DB4444]">
-                    This Month
+                    Tháng này
                 </p>
             </div>
             <div className="mt-[12px] flex items-end justify-between">
                 <h2 className="mt-[8px] text-[36px] leading-[48px] font-semibold tracking-[4%]">
-                    Best Selling Products
+                    Sản phẩm bán chạy
                 </h2>
                 <Button className="w-[159px] h-[56px] text-base">
-                    View All
+                    Xem tất cả
                 </Button>
             </div>
             <div className="mt-[60px] grid grid-cols-5 gap-8">
                 {products.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+                    <ProductCard key={product._id} product={product} />
                 ))}
             </div>
         </React.Fragment>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import products from '@/constants/products'
 import Breadcrumbs from '@/components/Breadcrumbs'
 import ProductCard from '@/components/ProductCard'
@@ -7,16 +7,105 @@ import PS52 from '@/assets/images/ps5_2.png'
 import PS53 from '@/assets/images/ps5_3.png'
 import PS54 from '@/assets/images/ps5_4.png'
 import PS55 from '@/assets/images/ps5_5.png'
-import { Button } from '../../../components/ui/button'
+import { Button } from '@/components/ui/button'
 import { FaRegHeart } from 'react-icons/fa6'
+import { useParams } from 'react-router-dom'
+import productApi from '@/api/productApi'
+import IProduct from '@/types/product'
+import { formatMoney } from '../../../utils/numberServices'
 
 function ProductDetail() {
+    const params = useParams()
+    const productId = params.id
+
     const previews = [PS51, PS52, PS53, PS54]
     const breadcrumbs = [
-        { id: 1, path: '/', label: 'Home' },
-        { id: 2, path: '/products', label: 'Products' },
-        { id: 2, path: '/products/product-name', label: 'Products Name' },
+        { id: 1, path: '/', label: 'Trang chủ' },
+        { id: 2, path: '/products', label: 'Sản phẩm' },
+        { id: 2, path: '/products/product-name', label: 'productId' },
     ]
+    const initialProduct = {
+        _id: '66a7d238219274d2e0068b24',
+        name: 'iPhone 15 Pro Max',
+        featureImage:
+            'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-thumbnew-600x600.jpg',
+        selection: {
+            color: ['Titan Trắng', 'Titan Đen', 'Titan Tự nhiên', 'Titan Xanh'],
+            storage: ['256GB', '512GB', '1TB'],
+        },
+        properties: {
+            screen: {
+                size: '6.7 inches',
+                technology: 'Super Retina XDR OLED',
+                resolution: '2796 x 1290 Pixels',
+                refreshRate: '120Hz',
+                type: 'Dynamic Island',
+            },
+            rearCamera: {
+                rearCamera: [
+                    'Camera chính: 48MP, 24 mm, ƒ/1.78',
+                    'Camera góc siêu rộng: 12 MP, 13 mm, ƒ/2.2',
+                    'Camera Tele: 12 MP',
+                ],
+                video: [
+                    '4K@24/25/30/60 fps',
+                    'HD 1080p@25/30/60 fps',
+                    'HD 720p@30 fps',
+                ],
+                features: [
+                    'Flash True Tone Thích Ứng',
+                    'Photonic Engine',
+                    'Deep Fusion',
+                    'HDR thông minh thế hệ 5',
+                    'Ảnh chân dung thế hệ mới với Focus và Depth Control',
+                    'Hiệu ứng Chiếu Sáng Chân Dung với sáu chế độ',
+                    'Chế độ Ban Đêm',
+                ],
+            },
+            frontCamera: {
+                frontCamera: ['12MP, ƒ/1.9'],
+                video: ['4K@24/25/30/60 fps', 'HD 1080p@25/30/60 fps'],
+            },
+            storage: {
+                RAM: '8 GB',
+                storage: '256 GB',
+                memoryStick: 'Không',
+            },
+            battery: {
+                battery: '4422 mAh',
+                chargingTechnology: [
+                    'Sạc nhanh 20 W',
+                    'Sạc không dây 15W',
+                    'Sạc không dây Qi 7.5W',
+                ],
+                type: 'USB Type-C',
+            },
+        },
+        price: "29290000",
+        discount: '10%',
+        category_id: '66a5237a51d1404e5b5ca301',
+        producer_id: '669299b8d2689b4046630a33',
+        reviews: [],
+        createdAt: '2024-07-29T17:32:40.594Z',
+        updatedAt: '2024-07-29T17:32:40.594Z',
+        __v: 0,
+    }
+    const [product, setProduct] = useState<IProduct>(initialProduct)
+    const [selectionColor, setSelectionColor] = useState<number>(0)
+    const [selectionStorage, setSelectionStorage] = useState<number>(0)
+
+    const fetchApi = useCallback(async () => {
+        const resProduct = await productApi.getOne(productId)
+        setProduct(resProduct.data.data)
+    }, [productId])
+
+    useEffect(() => {
+        fetchApi()
+    }, [fetchApi])
+
+    console.log(product);
+    
+
     return (
         <React.Fragment>
             <div className="mt-20">
@@ -44,8 +133,8 @@ function ProductDetail() {
                     </div>
                 </div>
                 <div className="w-[calc(100%-800px)]">
-                    <p className="text-[24px] leading-[24px] tracking-[3%] font-inter font-semibold">
-                        Havic HV G-92 Gamepad
+                    <p className="text-[28px] leading-none tracking-[3%] font-inter font-semibold">
+                        {product.name}
                     </p>
                     <div className="mt-4">
                         <div className="flex items-center justify-start gap-2">
@@ -91,42 +180,61 @@ function ProductDetail() {
                             </p>
                         </div>
                     </div>
-                    <p className="mt-4 text-[24px] leading-none font-inter tracking-[3%]">
-                        $192.00
+                    <p className="font-bold mt-6 mb-2 text-[28px] leading-none font-inter tracking-[3%]">
+                        {formatMoney(product.price)}
                     </p>
-                    <div className="mt-6 pb-6 border-b-[1px]">
-                        <p className="max-w-[500px] text-sm leading-[21px]">
-                            PlayStation 5 Controller Skin High quality vinyl
-                            with air channel adhesive for easy bubble free
-                            install & mess free removal Pressure sensitive.
-                        </p>
-                    </div>
-                    <div className="mt-6 flex items-center justify-start gap-6">
-                        <p className="text-[20px] leading-none tracking-[3%] font-inter">
-                            Colors:
-                        </p>
-                        <div className="flex items-center justify-start gap-2">
-                            <div className="size-[20px] rounded-full bg-blue-300" />
-                            <div className="size-[20px] rounded-full bg-red-300" />
+                    {product.selection?.color && (
+                        <div className="mt-6 flex items-start justify-start gap-6">
+                            <p className="mt-2 text-[20px] leading-none tracking-[3%] font-inter text-nowrap">
+                                Màu sắc
+                            </p>
+                            <div className="ml-7 flex items-center justify-start gap-2 flex-wrap">
+                                {product.selection.color.map((item, index) => (
+                                    <Button
+                                        variant={
+                                            selectionColor === index
+                                                ? 'default'
+                                                : 'outline'
+                                        }
+                                        className={`py-1 px-3 rounded-md font-semibold`}
+                                        key={index}
+                                        onClick={() => {
+                                            setSelectionColor(index)
+                                        }}
+                                    >
+                                        {item}
+                                    </Button>
+                                ))}
+                            </div>
                         </div>
-                    </div>
-                    <div className="mt-6 flex items-center justify-start gap-6">
-                        <p className="text-[20px] leading-none tracking-[3%] font-inter">
-                            Size
-                        </p>
-                        <div className="flex items-center justify-start gap-4">
-                            <Button className="size-[32px]" variant={'outline'}>
-                                XS
-                            </Button>
-                            <Button className="size-[32px]" variant={'outline'}>
-                                S
-                            </Button>
-                            <Button className="size-[32px]">M</Button>
-                            <Button className="size-[32px]" variant={'outline'}>
-                                L
-                            </Button>
+                    )}
+                    {product.selection?.storage && (
+                        <div className="mt-6 flex items-center justify-start gap-6">
+                            <p className="text-[20px] leading-none tracking-[3%] font-inter">
+                                Dung lượng
+                            </p>
+                            <div className="flex items-center justify-start gap-4">
+                                {product.selection.storage.map(
+                                    (item, index) => (
+                                        <Button
+                                            variant={
+                                                selectionStorage === index
+                                                    ? 'default'
+                                                    : 'outline'
+                                            }
+                                            className={`py-1 px-3 rounded-md font-semibold`}
+                                            key={index}
+                                            onClick={() => {
+                                                setSelectionStorage(index)
+                                            }}
+                                        >
+                                            {item}
+                                        </Button>
+                                    )
+                                )}
+                            </div>
                         </div>
-                    </div>
+                    )}
                     <div className="mt-6 flex items-center justify-start gap-4">
                         <Button className="w-[165px] h-[44px]">Buy Now</Button>
                         <Button
@@ -262,7 +370,7 @@ function ProductDetail() {
                     </div>
                 </div>
             </div>
-            <div className="mt-[140px]">
+            <div className="mt-10">
                 <div className="flex items-center justify-start gap-4 mb-[13px]">
                     <svg
                         width="20"
@@ -274,14 +382,32 @@ function ProductDetail() {
                         <rect width="20" height="40" rx="4" fill="#DB4444" />
                     </svg>
                     <p className="font-semibold text-base leading-[20px] text-[#DB4444]">
-                        Related Item
+                        Sản phẩm tương tự
                     </p>
                 </div>
                 <div className="mt-[60px] grid grid-cols-5 gap-x-8 gap-y-[60px]">
                     {products.map((product) => (
-                        <ProductCard key={product.id} product={product} />
+                        <ProductCard key={product._id} product={product} />
                     ))}
                 </div>
+            </div>
+            <div className="mt-20 flex items-start justify-between gap-3">
+                <div className="w-[calc(100%-400px)] h-[500px] rounded-xl border">
+                    <p className="pt-5 text-center text-lg leading-none font-bold uppercase text-red-500">
+                        Đặc điểm nổi bật
+                    </p>
+                </div>
+                <div className="w-[380px] h-fit border rounded-xl">
+                    <p className="text-base leading-none font-semibold px-5 py-4">
+                        Thông số kỹ thuật
+                    </p>
+                    
+                </div>
+            </div>
+            <div className="mt-6 px-5 py-4 rounded-xl border">
+                <p className="text-base leading-none font-semibold">
+                    Đánh giá & nhận xét {product.name}
+                </p>
             </div>
         </React.Fragment>
     )

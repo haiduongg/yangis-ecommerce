@@ -86,14 +86,14 @@
         @apply relative text-black no-underline hover:text-black pb-1;
     }
     .active::before {
-        @apply content-[""] absolute block w-full h-0.5 bg-black transition-transform duration-200 ease-linear left-0 bottom-0;
+        @apply content-[""] absolute block w-full h-0.5 bg-black transition-transform duration-200 ease-linear left-0 -bottom-[2px];
     }
 
     .nav-link {
         @apply relative text-black no-underline hover:text-black pb-1;
     }
     .nav-link::before {
-        @apply content-[""] absolute block w-full h-0.5 bg-black transition-transform duration-200 ease-linear scale-x-0 left-0 bottom-0;
+        @apply content-[""] absolute block w-full h-0.5 bg-black transition-transform duration-200 ease-linear scale-x-0 left-0 -bottom-[2px];
     }
     .nav-link:hover::before {
         @apply scale-x-100;

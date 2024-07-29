@@ -18,17 +18,17 @@ const categories: ICategories[] = [
     {
         id: '1',
         icon: IoPhonePortraitOutline,
-        label: 'Phones',
+        label: 'Điện thoại',
     },
     {
         id: '2',
         icon: HiOutlineComputerDesktop,
-        label: 'Computers',
+        label: 'Máy tính',
     },
     {
         id: '3',
         icon: IoWatchOutline,
-        label: 'SmartWatch',
+        label: 'Đồng hồ',
     },
     {
         id: '4',
@@ -38,7 +38,7 @@ const categories: ICategories[] = [
     {
         id: '5',
         icon: RiHeadphoneLine,
-        label: 'HeadPhones',
+        label: 'Tai nghe',
     },
     {
         id: '6',
