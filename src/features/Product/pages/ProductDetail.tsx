@@ -13,17 +13,14 @@ import { useParams } from 'react-router-dom'
 import productApi from '@/api/productApi'
 import IProduct from '@/types/product'
 import { formatMoney } from '../../../utils/numberServices'
+import SpecificationsTable from '../components/SpecificationsTable'
+import SpecialFeatures from '../components/SpecialFeatures'
+import UserReview from '../components/UserReview'
+import ImagePreviewer from '../components/ImagePreviewer'
 
 function ProductDetail() {
     const params = useParams()
     const productId = params.id
-
-    const previews = [PS51, PS52, PS53, PS54]
-    const breadcrumbs = [
-        { id: 1, path: '/', label: 'Trang chủ' },
-        { id: 2, path: '/products', label: 'Sản phẩm' },
-        { id: 2, path: '/products/product-name', label: 'productId' },
-    ]
     const initialProduct = {
         _id: '66a7d238219274d2e0068b24',
         name: 'iPhone 15 Pro Max',
@@ -81,7 +78,7 @@ function ProductDetail() {
                 type: 'USB Type-C',
             },
         },
-        price: "29290000",
+        price: '29290000',
         discount: '10%',
         category_id: '66a5237a51d1404e5b5ca301',
         producer_id: '669299b8d2689b4046630a33',
@@ -94,6 +91,13 @@ function ProductDetail() {
     const [selectionColor, setSelectionColor] = useState<number>(0)
     const [selectionStorage, setSelectionStorage] = useState<number>(0)
 
+    const previews = [PS51, PS52, PS53, PS54]
+    const breadcrumbs = [
+        { id: 1, path: '/', label: 'Trang chủ' },
+        { id: 2, path: '/products', label: 'Sản phẩm' },
+        { id: 2, path: '/products/product-name', label: initialProduct.name },
+    ]
+
     const fetchApi = useCallback(async () => {
         const resProduct = await productApi.getOne(productId)
         setProduct(resProduct.data.data)
@@ -103,35 +107,13 @@ function ProductDetail() {
         fetchApi()
     }, [fetchApi])
 
-    console.log(product);
-    
-
     return (
         <React.Fragment>
             <div className="mt-20">
                 <Breadcrumbs breadcrumbs={breadcrumbs} />
             </div>
             <div className="mt-20 flex items-start justify-start gap-[70px]">
-                <div className="w-[800px] grid grid-cols-4 gap-[30px]">
-                    <div className="col-span-1 grid grid-rows-4 gap-y-4">
-                        {previews.map((preview, index) => (
-                            <div key={index} className="row-span-1">
-                                <img
-                                    src={preview}
-                                    alt="index"
-                                    className="w-[170px] h-[138px] object-cover rounded-sm"
-                                />
-                            </div>
-                        ))}
-                    </div>
-                    <div className="col-span-3">
-                        <img
-                            src={PS55}
-                            alt=""
-                            className="w-full h-[600px] object-cover rounded-sm"
-                        />
-                    </div>
-                </div>
+                <ImagePreviewer data={previews}/>
                 <div className="w-[calc(100%-800px)]">
                     <p className="text-[28px] leading-none tracking-[3%] font-inter font-semibold">
                         {product.name}
@@ -392,22 +374,26 @@ function ProductDetail() {
                 </div>
             </div>
             <div className="mt-20 flex items-start justify-between gap-3">
-                <div className="w-[calc(100%-400px)] h-[500px] rounded-xl border">
-                    <p className="pt-5 text-center text-lg leading-none font-bold uppercase text-red-500">
+                <div className="py-5 px-4 w-[calc(100%-400px)] h-fit rounded-xl border">
+                    <p className="text-center text-lg leading-none font-bold uppercase text-red-500">
                         Đặc điểm nổi bật
                     </p>
+                    <SpecialFeatures />
                 </div>
-                <div className="w-[380px] h-fit border rounded-xl">
-                    <p className="text-base leading-none font-semibold px-5 py-4">
-                        Thông số kỹ thuật
-                    </p>
-                    
-                </div>
+                {product.properties && (
+                    <div className="w-[380px] h-fit border rounded-xl">
+                        <p className="text-base leading-none font-semibold px-5 py-4">
+                            Thông số kỹ thuật
+                        </p>
+                        <SpecificationsTable data={product.properties} />
+                    </div>
+                )}
             </div>
             <div className="mt-6 px-5 py-4 rounded-xl border">
-                <p className="text-base leading-none font-semibold">
+                <p className="mb-7 text-base leading-none font-semibold">
                     Đánh giá & nhận xét {product.name}
                 </p>
+                <UserReview />
             </div>
         </React.Fragment>
     )
