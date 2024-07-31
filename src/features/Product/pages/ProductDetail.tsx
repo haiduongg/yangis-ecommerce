@@ -6,7 +6,6 @@ import PS51 from '@/assets/images/ps5_1.png'
 import PS52 from '@/assets/images/ps5_2.png'
 import PS53 from '@/assets/images/ps5_3.png'
 import PS54 from '@/assets/images/ps5_4.png'
-import PS55 from '@/assets/images/ps5_5.png'
 import { Button } from '@/components/ui/button'
 import { FaRegHeart } from 'react-icons/fa6'
 import { useParams } from 'react-router-dom'
@@ -91,7 +90,7 @@ function ProductDetail() {
     const [selectionColor, setSelectionColor] = useState<number>(0)
     const [selectionStorage, setSelectionStorage] = useState<number>(0)
 
-    const previews = [PS51, PS52, PS53, PS54]
+    const previews = [PS51, PS52, PS53, PS54, PS54, PS54]
     const breadcrumbs = [
         { id: 1, path: '/', label: 'Trang chủ' },
         { id: 2, path: '/products', label: 'Sản phẩm' },
@@ -113,8 +112,10 @@ function ProductDetail() {
                 <Breadcrumbs breadcrumbs={breadcrumbs} />
             </div>
             <div className="mt-20 flex items-start justify-start gap-[70px]">
-                <ImagePreviewer data={previews}/>
-                <div className="w-[calc(100%-800px)]">
+                <div className="w-[800px]">
+                    <ImagePreviewer data={previews} />
+                </div>
+                <div className="w-[calc(100%-870px)]">
                     <p className="text-[28px] leading-none tracking-[3%] font-inter font-semibold">
                         {product.name}
                     </p>
