@@ -9,41 +9,41 @@ import { HiOutlineComputerDesktop } from 'react-icons/hi2'
 import { RiHeadphoneLine } from 'react-icons/ri'
 
 interface ICategories {
-    id: string
+    _id: string
     icon: IconType
-    label: string
+    name: string
 }
 
 const categories: ICategories[] = [
     {
-        id: '1',
+        _id: '1',
         icon: IoPhonePortraitOutline,
-        label: 'Điện thoại',
+        name: 'Điện thoại',
     },
     {
-        id: '2',
+        _id: '2',
         icon: HiOutlineComputerDesktop,
-        label: 'Máy tính',
+        name: 'Máy tính',
     },
     {
-        id: '3',
+        _id: '3',
         icon: IoWatchOutline,
-        label: 'Đồng hồ',
+        name: 'Đồng hồ',
     },
     {
-        id: '4',
+        _id: '4',
         icon: IoCameraOutline,
-        label: 'Camera',
+        name: 'Camera',
     },
     {
-        id: '5',
+        _id: '5',
         icon: RiHeadphoneLine,
-        label: 'Tai nghe',
+        name: 'Tai nghe',
     },
     {
-        id: '6',
+        _id: '6',
         icon: IoGameControllerOutline,
-        label: 'Gaming',
+        name: 'Gaming',
     },
 ]
 
