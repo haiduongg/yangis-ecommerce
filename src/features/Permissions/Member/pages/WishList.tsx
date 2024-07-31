@@ -19,7 +19,7 @@ function WishList() {
                 <div className="mt-[60px] grid grid-cols-5 gap-8">
                     {products.map((product) => (
                         <ProductCard
-                            key={product.id}
+                            key={product._id}
                             product={product}
                             isShowHeart={false}
                             isShowDelete={true}
@@ -60,7 +60,7 @@ function WishList() {
                     <div className="mt-[60px] grid grid-cols-5 gap-8">
                         {products.map((product) => (
                             <ProductCard
-                                key={product.id}
+                                key={product._id}
                                 product={product}
                                 isShowHeart={false}
                                 isShowDelete={true}
