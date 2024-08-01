@@ -1,40 +1,43 @@
 export interface IProductProperties {
     screen?: {
-        size?:string
-        technology?:string 
-        resolution?:string 
-        refreshRate?:string 
-        type?:string
+        size?: string
+        technology?: string
+        resolution?: string
+        refreshRate?: string
+        type?: string
     }
-    rearCamera?:{
-        rearCamera?:string[]
-        video?:string[]
-        features?:string[]
+    rearCamera?: {
+        rearCamera?: string[]
+        video?: string[]
+        features?: string[]
     }
-    frontCamera?:{
-        frontCamera?:string[]
-        video?:string[]
-        features?:string[]
+    frontCamera?: {
+        frontCamera?: string[]
+        video?: string[]
+        features?: string[]
     }
-    storage?:{
-        RAM?:string
-        storage?:string
-        memoryStick?:string
+    storage?: {
+        RAM?: string
+        storage?: string
+        memoryStick?: string
     }
-    battery?:{
-        battery?:string
-        chargingTechnology?:string[]
-        type?:string
+    battery?: {
+        battery?: string
+        chargingTechnology?: string[]
+        type?: string
     }
 }
 
+export interface IProductWithQuantity extends IProduct {
+    quantity: number
+}
 export default interface IProduct {
     _id: string
     name: string
     featureImage: string
     selection?: { color?: string[]; storage: string[] }
     properties?: IProductProperties
-    price: string
+    price: number
     discount?: string
     category_id: string
     producer_id: string

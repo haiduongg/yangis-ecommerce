@@ -1,39 +1,36 @@
 import React from 'react'
-import Breadcrumbs from '@/components/Breadcrumbs'
+import { useDispatch, useSelector } from 'react-redux'
 import { FiDelete } from 'react-icons/fi'
+
+import { RootState } from '@/redux/store'
+import {
+    decrementQuantity,
+    deleteCart,
+    incrementQuantity,
+} from '@/redux/cartSlice'
+
+import Breadcrumbs from '@/components/Breadcrumbs'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
+import { formatMoney } from '@/utils/numberServices'
+import { Link } from 'react-router-dom'
+
+const breadcrumbs = [
+    { id: 1, path: '/', label: 'Home' },
+    { id: 2, path: '/', label: 'Cart' },
+]
+
 function Cart() {
-    const breadcrumbs = [
-        { id: 1, path: '/', label: 'Home' },
-        { id: 2, path: '/', label: 'Cart' },
-    ]
-    const products = [
-        {
-            id: '1',
-            name: 'HAVIT HV-G92 Gamepad',
-            featureImage:
-                'https://product.hstatic.net/200000420363/product/7bbab475d0ce8433910532073d73b686_ea0585d239d24736934edc8461a0d7ab_master.png',
-            price: '200',
-            rating: 4,
-            discountPercent: 50,
-            salePrice: '100',
-            totalReview: 88,
-            quantity: 1,
-        },
-        {
-            id: '2',
-            name: 'HAVIT HV-G92 Gamepad',
-            featureImage:
-                'https://product.hstatic.net/200000420363/product/7bbab475d0ce8433910532073d73b686_ea0585d239d24736934edc8461a0d7ab_master.png',
-            price: '200',
-            rating: 5,
-            discountPercent: 50,
-            totalReview: 8,
-            quantity: 1,
-        },
-    ]
+    const dispatch = useDispatch()
+    const { cart, total } = useSelector((state: RootState) => state.cart)
+
+    const Shipping = 0
+
+    const handleDeleteCart = (productId: string) => {
+        dispatch(deleteCart(productId))
+    }
+
     return (
         <React.Fragment>
             <div className="mt-[80px]">
@@ -41,16 +38,16 @@ function Cart() {
                 <div className="mt-[80px]">
                     <table className="w-full">
                         <thead className="grid grid-cols-12 shadow-xxl py-5">
-                            <th className="col-span-4">Product</th>
-                            <th className="col-span-2">Price</th>
-                            <th className="col-span-3">Quantity</th>
-                            <th className="col-span-2">Subtotal</th>
-                            <th className="col-span-1">Action</th>
+                            <th className="col-span-4">Sản phẩm</th>
+                            <th className="col-span-2">Giá tiền</th>
+                            <th className="col-span-3">Số lượng</th>
+                            <th className="col-span-2">Thành tiền</th>
+                            <th className="col-span-1"></th>
                         </thead>
                         <tbody>
-                            {products.map((product) => (
+                            {cart.map((product) => (
                                 <tr
-                                    key={product.id}
+                                    key={product._id}
                                     className="grid grid-cols-12 py-5 mt-10 items-center"
                                 >
                                     <td className="col-span-4 ml-10 flex items-center">
@@ -62,16 +59,47 @@ function Cart() {
                                         <p className="ml-5">{product.name}</p>
                                     </td>
                                     <td className="col-span-2 text-center">
-                                        <p>${product.price}</p>
+                                        {formatMoney(product.price)}
                                     </td>
-                                    <td className="col-span-3 text-center">
-                                        Quantity
+                                    <td className="col-span-3 flex items-center justify-center gap-5">
+                                        <Button
+                                            className="w-[40px]"
+                                            onClick={() => {
+                                                dispatch(
+                                                    decrementQuantity(
+                                                        product._id
+                                                    )
+                                                )
+                                            }}
+                                        >
+                                            -
+                                        </Button>
+                                        {product.quantity}
+                                        <Button
+                                            className="w-[40px]"
+                                            onClick={() => {
+                                                dispatch(
+                                                    incrementQuantity(
+                                                        product._id
+                                                    )
+                                                )
+                                            }}
+                                        >
+                                            +
+                                        </Button>
                                     </td>
                                     <td className="col-span-2 text-center">
-                                        ${product.price}
+                                        {formatMoney(
+                                            product.price * product.quantity
+                                        )}
                                     </td>
                                     <td className="col-span-1 grid place-items-center">
-                                        <Button variant={'destructive'}>
+                                        <Button
+                                            variant={'destructive'}
+                                            onClick={() => {
+                                                handleDeleteCart(product._id)
+                                            }}
+                                        >
                                             <FiDelete size={20} />
                                         </Button>
                                     </td>
@@ -81,39 +109,43 @@ function Cart() {
                     </table>
                 </div>
                 <div className="mt-6 flex justify-end">
-                    <Button className="w-[218px] h-[56px]" variant={'outline'}>
-                        Return To Shop
+                    <Button
+                        asChild
+                        className="w-[218px] h-[56px]"
+                        variant={'outline'}
+                    >
+                        <Link to={'/products'}>Tiếp tục mua sắm</Link>
                     </Button>
                 </div>
                 <div className="mt-20 flex items-start justify-between">
                     <div className="flex items-center justify-start gap-4">
                         <Input
                             className="w-[400px] h-[56px] text-base px-5"
-                            placeholder="Coupon Code"
+                            placeholder="Mã giảm giá"
                         />
                         <Button className="w-[211px] h-[56px]">
-                            Apply Coupon
+                            Áp dụng
                         </Button>
                     </div>
                     <div className="w-[470px] border-[1px] rounded-sm py-8 px-6">
                         <p className="text-[20px] leading-[28px] font-medium">
-                            Cart Total
+                            Hóa đơn
                         </p>
                         <div className="mt-6 flex items-center justify-between pb-4 border-b-[1px]">
-                            <p>Subtotal:</p>
-                            <p>$1170</p>
+                            <p>Tạm tính:</p>
+                            <p>{formatMoney(total)}</p>
                         </div>
                         <div className="mt-6 flex items-center justify-between pb-4 border-b-[1px]">
-                            <p>Shipping:</p>
-                            <p>Free</p>
+                            <p>Phí vận chuyển:</p>
+                            <p>{formatMoney(Shipping)}</p>
                         </div>
                         <div className="mt-6 flex items-center justify-between">
-                            <p>Total:</p>
-                            <p>$1170</p>
+                            <p>Tổng cộng:</p>
+                            <p>{formatMoney(total + Shipping)}</p>
                         </div>
                         <div className="mt-6 grid place-items-center">
                             <Button className="w-[260px] h-[56px]">
-                                Process to checkout
+                                Tiến hành thanh toán
                             </Button>
                         </div>
                     </div>

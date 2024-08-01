@@ -1,12 +1,27 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Input } from '@/components/ui/input'
+import { useSelector } from 'react-redux'
 import { GrSearch, GrCart } from 'react-icons/gr'
 import { FaRegHeart } from 'react-icons/fa6'
 import { GoArrowUpRight } from 'react-icons/go'
+
+import { RootState } from '@/redux/store'
+
+import { Input } from '@/components/ui/input'
+
+import { IProductWithQuantity } from '@/types/product'
+
 import navigates from '@/constants/navigates'
 
 export default function Navbar() {
+    const { cart } = useSelector((state: RootState) => state.cart)
+    const calcNumberProductInCart: (cart: IProductWithQuantity[]) => number =
+        function (cart) {
+            let total = 0
+            cart.forEach((product) => (total += product.quantity))
+            return total
+        }
+
     return (
         <React.Fragment>
             <div className="flex items-center justify-between">
@@ -64,8 +79,14 @@ export default function Navbar() {
                         >
                             <FaRegHeart size={20} />
                         </Link>
-                        <Link to={'/cart'} className="p-[6px] cursor-pointer">
+                        <Link
+                            to={'/cart'}
+                            className="relative p-[6px] cursor-pointer"
+                        >
                             <GrCart size={20} />
+                            <p className="absolute top-[-5px] right-[-5px] px-1 py-0.5 rounded-full text-white bg-red-500 font-semibold text-xs leading-none">
+                                {calcNumberProductInCart(cart)}
+                            </p>
                         </Link>
                     </div>
                 </div>

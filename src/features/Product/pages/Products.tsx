@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import Breadcrumbs from '@/components/Breadcrumbs'
-import { IoFilter } from 'react-icons/io5'
-import IProduct from '@/types/product'
+import { useSearchParams } from 'react-router-dom'
+
 import productApi from '@/api/productApi'
+import producerApi from '@/api/producerApi'
+
 import ProductCard from '@/components/ProductCard'
 import {
     Select,
@@ -11,47 +12,79 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-import categories from '../../../constants/categories'
-import { Button } from '../../../components/ui/button'
-import { FaChevronDown } from 'react-icons/fa6'
-import { useSearchParams } from 'react-router-dom'
-import initProducts from '@/constants/products';
+import Breadcrumbs from '@/components/Breadcrumbs'
+import FilterBar from '@/features/Product/components/FilterBar'
+
+import initProducers from '@/constants/producers'
+import initCategories from '@/constants/categories'
+import initProducts from '@/constants/products'
+
+import IProduct from '@/types/product'
+import IProducer from '@/types/producer'
+import ICategory from '@/types/category'
+
+const breadcrumbs = [
+    {
+        id: 1,
+        path: '/',
+        label: 'Trang chủ',
+    },
+    {
+        id: 2,
+        path: '/products',
+        label: 'Sản phẩm',
+    },
+]
 
 function Products() {
     const [searchParams, setSearchParams] = useSearchParams()
-    const breadcrumbs = [
-        {
-            id: 1,
-            path: '/',
-            label: 'Trang chủ',
-        },
-        {
-            id: 2,
-            path: '/products',
-            label: 'Sản phẩm',
-        },
-    ]
+    const initialFilter = {
+        category: searchParams.get('category') ?? '',
+        producer: searchParams.get('producer') ?? '',
+        price: searchParams.get('price') ?? '',
+    }
     const [products, setProducts] = useState<IProduct[]>(initProducts)
+    const [producers, setProducers] = useState<IProducer[]>(initProducers)
+    // TODO: Set data for category from Api
+    const [categories] = useState<ICategory[]>(initCategories)
     const [, setSort] = useState<string>('name')
     const [filter, setFilter] = useState<{
-        producer: string
         category: string
+        producer: string
         price: string
-    }>({
-        producer: '',
-        category: '',
-        price: '',
-    })
+    }>(initialFilter)
 
     const fetchApi = useCallback(async () => {
         const params = {}
-        const resProduct = await productApi.getAll(params)
-        setProducts(resProduct.data.data.products)
+        const resProducts = await productApi.getAll(params)
+        const resProducers = await producerApi.getAll(params)
+        // TODO: Add Category Json Api
+        // const resCategories = await categoryApi.getAll(params)
+        setProducts(resProducts.data.data.products)
+        // setCategories(resCategories.data.data)
+        setProducers(resProducers.data.data)
     }, [])
-
     useEffect(() => {
         fetchApi()
     }, [fetchApi])
+
+    useEffect(() => {
+        const searchParamsHandler = () => {
+            const q: { category?: string; producer?: string; price?: string } =
+                {}
+            if (filter.category.length != 0) {
+                q['category'] = filter.category
+            }
+            if (filter.producer.length != 0) {
+                q['producer'] = filter.producer
+            }
+            if (filter.price.length != 0) {
+                q['price'] = filter.price
+            }
+            setSearchParams(q)
+        }
+        searchParamsHandler()
+    }, [filter, setSearchParams])
 
     return (
         <React.Fragment>
@@ -60,71 +93,12 @@ function Products() {
             </div>
             <h1 className="text-2xl font-bold">Tất cả sản phẩm</h1>
             <div className="mt-5 grid grid-cols-4 gap-8">
-                <div className="col-span-1 border rounded-xl divide-y h-fit">
-                    <h2 className="text-lg px-5 py-4 font-semibold leading-none">
-                        <IoFilter
-                            className="inline-block mr-3 leading-none align-middle"
-                            size={23}
-                        />
-                        Bộ lọc tìm kiếm
-                    </h2>
-                    <div className="px-5 py-4">
-                        <div className="flex items-center justify-between cursor-pointer">
-                            <h3 className="text-base leading-none font-semibold">
-                                Hãng sản xuất
-                            </h3>
-                            <FaChevronDown />
-                        </div>
-                        <div className="mt-5 grid grid-cols-2 gap-3">
-                            {categories.map((category) => (
-                                <Button
-                                    key={category._id}
-                                    variant={'outline'}
-                                    onClick={() => {
-                                        setFilter((pre) => ({
-                                            ...pre,
-                                            producer: category.name,
-                                        }))
-                                    }}
-                                >
-                                    {category.name}
-                                </Button>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="px-5 py-4">
-                        <div className="flex items-center justify-between cursor-pointer">
-                            <h3 className="text-base leading-none font-semibold">
-                                Danh mục
-                            </h3>
-                            <FaChevronDown />
-                        </div>
-                        <div className="mt-5 grid grid-cols-2 gap-3">
-                            {categories.map((category) => (
-                                <Button
-                                    key={category._id}
-                                    variant={'outline'}
-                                    onClick={() => {
-                                        setFilter((pre) => ({
-                                            ...pre,
-                                            category: category.name,
-                                        }))
-                                    }}
-                                >
-                                    {category.name}
-                                </Button>
-                            ))}
-                        </div>
-                    </div>
-                    <div className="px-5 py-4">
-                        <div className="flex items-center justify-between cursor-pointer">
-                            <h3 className="text-base leading-none font-semibold">
-                                Mức giá
-                            </h3>
-                            <FaChevronDown />
-                        </div>
-                    </div>
-                </div>
+                <FilterBar
+                    producers={producers}
+                    categories={categories}
+                    filter={filter}
+                    setFilter={setFilter}
+                />
                 <div className="col-span-3 h-fit">
                     <div className="flex items-start justify-between text-[14px] leading-none">
                         <p>
