@@ -1,5 +1,3 @@
-import IReview from './review'
-
 export interface IProductProperties {
     screen?: {
         size?:string
@@ -40,7 +38,7 @@ export default interface IProduct {
     discount?: string
     category_id: string
     producer_id: string
-    reviews?: IReview[]
+    reviews?: string[]
     createdAt: string
     updatedAt: string
     __v?: number

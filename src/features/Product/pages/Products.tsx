@@ -14,8 +14,11 @@ import {
 import categories from '../../../constants/categories'
 import { Button } from '../../../components/ui/button'
 import { FaChevronDown } from 'react-icons/fa6'
+import { useSearchParams } from 'react-router-dom'
+import initProducts from '@/constants/products';
 
 function Products() {
+    const [searchParams, setSearchParams] = useSearchParams()
     const breadcrumbs = [
         {
             id: 1,
@@ -28,74 +31,17 @@ function Products() {
             label: 'Sản phẩm',
         },
     ]
-    const initalProducts: IProduct = {
-        _id: '66a7d238219274d2e0068b24',
-        name: 'iPhone 15 Pro Max',
-        featureImage:
-            'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-thumbnew-600x600.jpg',
-        selection: {
-            color: ['Titan Trắng', 'Titan Đen', 'Titan Tự nhiên', 'Titan Xanh'],
-            storage: ['256GB', '512GB', '1TB'],
-        },
-        properties: {
-            screen: {
-                size: '6.7 inches',
-                technology: 'Super Retina XDR OLED',
-                resolution: '2796 x 1290 Pixels',
-                refreshRate: '120Hz',
-                type: 'Dynamic Island',
-            },
-            rearCamera: {
-                rearCamera: [
-                    'Camera chính: 48MP, 24 mm, ƒ/1.78',
-                    'Camera góc siêu rộng: 12 MP, 13 mm, ƒ/2.2',
-                    'Camera Tele: 12 MP',
-                ],
-                video: [
-                    '4K@24/25/30/60 fps',
-                    'HD 1080p@25/30/60 fps',
-                    'HD 720p@30 fps',
-                ],
-                features: [
-                    'Flash True Tone Thích Ứng',
-                    'Photonic Engine',
-                    'Deep Fusion',
-                    'HDR thông minh thế hệ 5',
-                    'Ảnh chân dung thế hệ mới với Focus và Depth Control',
-                    'Hiệu ứng Chiếu Sáng Chân Dung với sáu chế độ',
-                    'Chế độ Ban Đêm',
-                ],
-            },
-            frontCamera: {
-                frontCamera: ['12MP, ƒ/1.9'],
-                video: ['4K@24/25/30/60 fps', 'HD 1080p@25/30/60 fps'],
-            },
-            storage: {
-                RAM: '8 GB',
-                storage: '256 GB',
-                memoryStick: 'Không',
-            },
-            battery: {
-                battery: '4422 mAh',
-                chargingTechnology: [
-                    'Sạc nhanh 20 W',
-                    'Sạc không dây 15W',
-                    'Sạc không dây Qi 7.5W',
-                ],
-                type: 'USB Type-C',
-            },
-        },
-        price: '29290000',
-        discount: '10%',
-        category_id: '66a5237a51d1404e5b5ca301',
-        producer_id: '669299b8d2689b4046630a33',
-        reviews: [],
-        createdAt: '2024-07-29T17:32:40.594Z',
-        updatedAt: '2024-07-29T17:32:40.594Z',
-        __v: 0,
-    }
-    const [products, setProducts] = useState<IProduct[]>([initalProducts])
+    const [products, setProducts] = useState<IProduct[]>(initProducts)
     const [, setSort] = useState<string>('name')
+    const [filter, setFilter] = useState<{
+        producer: string
+        category: string
+        price: string
+    }>({
+        producer: '',
+        category: '',
+        price: '',
+    })
 
     const fetchApi = useCallback(async () => {
         const params = {}
@@ -123,41 +69,59 @@ function Products() {
                         Bộ lọc tìm kiếm
                     </h2>
                     <div className="px-5 py-4">
-                        <div className='flex items-center justify-between cursor-pointer'>
+                        <div className="flex items-center justify-between cursor-pointer">
                             <h3 className="text-base leading-none font-semibold">
                                 Hãng sản xuất
                             </h3>
                             <FaChevronDown />
                         </div>
-                        <div className='mt-5 grid grid-cols-2 gap-3'>
-                            {categories.map((category)=>(
-                                <Button key={category._id} variant={'outline'}>
+                        <div className="mt-5 grid grid-cols-2 gap-3">
+                            {categories.map((category) => (
+                                <Button
+                                    key={category._id}
+                                    variant={'outline'}
+                                    onClick={() => {
+                                        setFilter((pre) => ({
+                                            ...pre,
+                                            producer: category.name,
+                                        }))
+                                    }}
+                                >
                                     {category.name}
                                 </Button>
                             ))}
                         </div>
                     </div>
                     <div className="px-5 py-4">
-                        <div className='flex items-center justify-between cursor-pointer'>
+                        <div className="flex items-center justify-between cursor-pointer">
                             <h3 className="text-base leading-none font-semibold">
                                 Danh mục
                             </h3>
                             <FaChevronDown />
                         </div>
-                        <div className='mt-5 grid grid-cols-2 gap-3'>
-                            {categories.map((category)=>(
-                                <Button key={category._id} variant={'outline'}>
+                        <div className="mt-5 grid grid-cols-2 gap-3">
+                            {categories.map((category) => (
+                                <Button
+                                    key={category._id}
+                                    variant={'outline'}
+                                    onClick={() => {
+                                        setFilter((pre) => ({
+                                            ...pre,
+                                            category: category.name,
+                                        }))
+                                    }}
+                                >
                                     {category.name}
                                 </Button>
                             ))}
                         </div>
                     </div>
                     <div className="px-5 py-4">
-                        <div className='flex items-center justify-between cursor-pointer'>
+                        <div className="flex items-center justify-between cursor-pointer">
                             <h3 className="text-base leading-none font-semibold">
                                 Mức giá
                             </h3>
-                            <FaChevronDown/>
+                            <FaChevronDown />
                         </div>
                     </div>
                 </div>
@@ -172,7 +136,7 @@ function Products() {
                             <p className="opacity-60">Sắp xếp theo:</p>
                             <Select>
                                 <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder='A-Z' />
+                                    <SelectValue placeholder="A-Z" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     <SelectItem
