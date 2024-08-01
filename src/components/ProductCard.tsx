@@ -9,7 +9,9 @@ import IProduct from '@/types/product'
 import { Link } from 'react-router-dom'
 import { formatMoney } from '@/utils/numberServices'
 import { useDispatch } from 'react-redux'
+
 import { addCart } from '@/redux/cartSlice'
+import { addProduct, deleteProduct } from '@/redux/wishlistSlice'
 
 ProductCard.propTypes = {
     product: PropTypes.object.isRequired,
@@ -34,13 +36,19 @@ function ProductCard({
     isShowHeart = true,
 }: IProductCard) {
     const dispatch = useDispatch()
-    const calcSalePrice = (origin: string, discount: string) => {
+    const calcSalePrice = (origin: number, discount: string) => {
         const saleNumber = discount.slice(0, discount.length - 1)
-        return (+origin * (+saleNumber / 100)).toString()
+        return (origin * (+saleNumber / 100)).toString()
     }
 
     const handleAddCart = (product: IProduct) => {
         dispatch(addCart(product))
+    }
+    const handleAddWishlist = (product: IProduct) => {
+        dispatch(addProduct(product))
+    }
+    const handleDeleteWishList = (productId: string) => {
+        dispatch(deleteProduct(productId))
     }
 
     return (
@@ -61,7 +69,12 @@ function ProductCard({
                     {isShowDelete === false && (
                         <div className="absolute top-[12px] right-[12px] flex flex-col gap-2">
                             {isShowHeart === true && (
-                                <button className="p-[9px] rounded-full bg-white hover:bg-neutral-100 transition duration-200">
+                                <button
+                                    className="p-[9px] rounded-full bg-white hover:bg-neutral-100 transition duration-200"
+                                    onClick={() => {
+                                        handleAddWishlist(product)
+                                    }}
+                                >
                                     <FaRegHeart size={16} />
                                 </button>
                             )}
@@ -73,7 +86,12 @@ function ProductCard({
                         </div>
                     )}
                     {isShowDelete === true && (
-                        <button className="absolute top-[12px] right-[12px] p-[9px] rounded-full bg-white hover:bg-neutral-100 transition duration-200">
+                        <button
+                            className="absolute top-[12px] right-[12px] p-[9px] rounded-full bg-white hover:bg-neutral-100 transition duration-200"
+                            onClick={() => {
+                                handleDeleteWishList(product._id)
+                            }}
+                        >
                             <RiDeleteBin6Line size={16} />
                         </button>
                     )}

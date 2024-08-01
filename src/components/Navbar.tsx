@@ -15,6 +15,8 @@ import navigates from '@/constants/navigates'
 
 export default function Navbar() {
     const { cart } = useSelector((state: RootState) => state.cart)
+    const { wishlist } = useSelector((state: RootState) => state.wishlist)
+
     const calcNumberProductInCart: (cart: IProductWithQuantity[]) => number =
         function (cart) {
             let total = 0
@@ -75,9 +77,14 @@ export default function Navbar() {
                     <div className="flex items-center justify-end gap-4">
                         <Link
                             to={'/wish-list'}
-                            className="p-[6px] cursor-pointer"
+                            className="relative p-[6px] cursor-pointer"
                         >
                             <FaRegHeart size={20} />
+                            {wishlist.length !== 0 && (
+                                <p className="absolute top-[-5px] right-[-5px] px-1 py-0.5 rounded-full text-white bg-red-500 font-semibold text-xs leading-none">
+                                    {wishlist.length}
+                                </p>
+                            )}
                         </Link>
                         <Link
                             to={'/cart'}

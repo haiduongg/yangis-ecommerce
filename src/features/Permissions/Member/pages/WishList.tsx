@@ -2,13 +2,20 @@ import React from 'react'
 import { Button } from '@/components/ui/button'
 import products from '@/constants/products'
 import ProductCard from '@/components/ProductCard'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/redux/store'
+import { Link } from 'react-router-dom'
 
 function WishList() {
+    const { wishlist } = useSelector((state: RootState) => state.wishlist)
+
     return (
         <React.Fragment>
             <div className="mt-[80px]">
                 <div className="flex items-center justify-between">
-                    <p className="text-[20px] leading-[26px]">Wishlist (4)</p>
+                    <p className="text-[20px] leading-[26px]">
+                        Danh sách yêu thích (4)
+                    </p>
                     <Button
                         variant={'outline'}
                         className="w-[223px] h-[56px] font-medium"
@@ -17,16 +24,22 @@ function WishList() {
                     </Button>
                 </div>
                 <div className="mt-[60px] grid grid-cols-5 gap-8">
-                    {products.map((product) => (
-                        <ProductCard
-                            key={product._id}
-                            product={product}
-                            isShowHeart={false}
-                            isShowDelete={true}
-                            isAlwayShowAddToCart={true}
-                            isShowRating={false}
-                        />
-                    ))}
+                    {wishlist.length > 0 &&
+                        wishlist.map((product) => (
+                            <ProductCard
+                                key={product._id}
+                                product={product}
+                                isShowHeart={false}
+                                isShowDelete={true}
+                                isAlwayShowAddToCart={true}
+                                isShowRating={false}
+                            />
+                        ))}
+                    {wishlist.length == 0 && (
+                        <div className="col-span-5">
+                            <p className="text-center">Không có sản phẩm nào</p>
+                        </div>
+                    )}
                 </div>
 
                 <div className="mt-[80px]">
@@ -47,14 +60,15 @@ function WishList() {
                                 />
                             </svg>
                             <p className="text-[20px] leading-[26px]">
-                                Just For You
+                                Dành cho bạn
                             </p>
                         </div>
                         <Button
+                            asChild
                             className="w-[150px] h-[56px]"
                             variant={'outline'}
                         >
-                            See All
+                            <Link to={'/products'}>Xem tất cả</Link>
                         </Button>
                     </div>
                     <div className="mt-[60px] grid grid-cols-5 gap-8">
@@ -63,7 +77,7 @@ function WishList() {
                                 key={product._id}
                                 product={product}
                                 isShowHeart={false}
-                                isShowDelete={true}
+                                isShowDelete={false}
                                 isAlwayShowAddToCart={true}
                             />
                         ))}
