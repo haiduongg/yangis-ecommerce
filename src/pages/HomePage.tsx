@@ -1,7 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { FaChevronRight } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
-import collections from '@/constants/collections'
+
+import productApi from '@/api/productApi'
 import {
     Banner,
     BestSelling,
@@ -12,9 +14,8 @@ import {
     OurProduct,
     Services,
 } from '@/components/Section/index'
+import collections from '@/constants/collections'
 import IProduct from '@/types/product'
-import productApi from '@/api/productApi'
-import { Helmet } from 'react-helmet-async'
 
 function HomePage() {
     const initalProducts: IProduct = {

@@ -1,6 +1,7 @@
 import React from 'react'
+
 import ShadowStyle from '@/assets/images/shadown.png'
-import { Button } from '../ui/button'
+import { Button } from '@/components/ui/button'
 
 function FeatureProduct() {
     const ProductSale: { label: string; value: string }[] = [

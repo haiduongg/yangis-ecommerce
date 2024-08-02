@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import CartImage from '@/assets/images/cart.png'
 import LoginForm from '@/components/Form/LoginForm'
-import { Link } from 'react-router-dom'
-import { Button } from '../components/ui/button'
+import { Button } from '@/components/ui/button'
 
 function LoginPage() {
     return (

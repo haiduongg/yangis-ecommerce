@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import { FaChevronDown } from 'react-icons/fa6'
 import { IoFilter } from 'react-icons/io5'
 
+import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
-import { Button } from '@/components/ui/button'
-
-import IProducer from '@/types/producer'
 import ICategory from '@/types/category'
+import IProducer from '@/types/producer'
 
 interface IProps {
     producers: IProducer[]

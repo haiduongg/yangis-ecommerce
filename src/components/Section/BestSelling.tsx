@@ -1,7 +1,8 @@
 import React from 'react'
-import { Button } from '../ui/button'
-import products from '../../constants/products'
-import ProductCard from '../ProductCard'
+
+import ProductCard from '@/components/ProductCard'
+import { Button } from '@/components/ui/button'
+import products from '@/constants/products'
 
 function BestSelling() {
     return (

@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types'
-import { Progress } from '@/components/ui/progress'
-import { Button } from '../../../components/ui/button'
-import UserReviewCard from './UserReviewCard'
 import { FaChevronDown } from 'react-icons/fa6'
 
-UserReview.propTypes = {
-    data: PropTypes.object,
+import { Button } from '@/components/ui/button'
+import { Progress } from '@/components/ui/progress'
+import UserReviewCard from '@/features/Product/components/UserReviewCard'
+
+interface IProps {
+    data: object
 }
 
-function UserReview({ data }: { data: any }) {
+function UserReview({ data }: IProps) {
     const progressReview = [
         { id: 5, countReviews: 50 },
         { id: 4, countReviews: 30 },
@@ -93,8 +93,8 @@ function UserReview({ data }: { data: any }) {
             </div>
             <div className="mt-5 flex justify-center mb-2">
                 <Button variant={'outline'} className="px-20">
-                    Xem thêm 
-                    <FaChevronDown className='ml-2' size={10}/>
+                    Xem thêm
+                    <FaChevronDown className="ml-2" size={10} />
                 </Button>
             </div>
         </div>

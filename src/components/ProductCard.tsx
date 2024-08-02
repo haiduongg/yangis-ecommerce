@@ -1,25 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-
 import { FaRegHeart } from 'react-icons/fa6'
 import { FiEye } from 'react-icons/fi'
 import { RiDeleteBin6Line } from 'react-icons/ri'
-
-import IProduct from '@/types/product'
-import { Link } from 'react-router-dom'
-import { formatMoney } from '@/utils/numberServices'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { addCart } from '@/redux/cartSlice'
 import { addProduct, deleteProduct } from '@/redux/wishlistSlice'
+import IProduct from '@/types/product'
+import { formatMoney } from '@/utils/numberServices'
 
-ProductCard.propTypes = {
-    product: PropTypes.object.isRequired,
-    isAlwayShowAddToCart: PropTypes.bool,
-    isShowRating: PropTypes.bool,
-    isShowDelete: PropTypes.bool,
-    isShowHeart: PropTypes.bool,
-}
 interface IProductCard {
     product: IProduct
     isShowRating?: boolean

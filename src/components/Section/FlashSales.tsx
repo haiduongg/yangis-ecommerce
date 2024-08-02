@@ -1,7 +1,8 @@
 import React from 'react'
+
+import ProductCard from '@/components/ProductCard'
 import { Button } from '@/components/ui/button'
 import products from '@/constants/products'
-import ProductCard from '@/components/ProductCard'
 
 export default function FlashSales() {
     const FlashSaleCountdown = [

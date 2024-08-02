@@ -1,6 +1,7 @@
 import React from 'react'
-import TopHeader from './TopHeader'
-import Navbar from './Navbar'
+
+import Navbar from '@/components/Navbar'
+import TopHeader from '@/components/TopHeader'
 
 function Header() {
     return (

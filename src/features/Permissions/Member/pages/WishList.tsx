@@ -1,11 +1,12 @@
 import React from 'react'
+import { Helmet } from 'react-helmet-async'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+
+import ProductCard from '@/components/ProductCard'
 import { Button } from '@/components/ui/button'
 import products from '@/constants/products'
-import ProductCard from '@/components/ProductCard'
-import { useSelector } from 'react-redux'
 import { RootState } from '@/redux/store'
-import { Link } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 
 function WishList() {
     const { wishlist } = useSelector((state: RootState) => state.wishlist)

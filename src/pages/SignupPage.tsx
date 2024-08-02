@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 import CartImage from '@/assets/images/cart.png'
 import SignupForm from '@/components/Form/SignupForm'
-import { Link } from 'react-router-dom'
-import { Button } from '../components/ui/button'
+import { Button } from '@/components/ui/button'
 
 function SignupPage() {
     return (

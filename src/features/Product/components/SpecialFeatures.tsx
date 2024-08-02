@@ -1,10 +1,8 @@
-import PropTypes from 'prop-types'
-
-SpecialFeatures.propTypes = {
-    data: PropTypes.string,
+interface IProps {
+    data: any
 }
 
-function SpecialFeatures({ data }: { data: any }) {
+function SpecialFeatures({ data }: IProps) {
     return (
         <div className="mt-3 text-justify">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quasi

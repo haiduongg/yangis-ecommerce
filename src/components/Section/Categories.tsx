@@ -1,6 +1,7 @@
 import React from 'react'
-import categories from '@/constants/categories'
 import { Link } from 'react-router-dom'
+
+import categories from '@/constants/categories'
 
 function Categories() {
     return (

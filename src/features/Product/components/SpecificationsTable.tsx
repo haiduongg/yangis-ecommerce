@@ -1,14 +1,13 @@
-import PropTypes from 'prop-types'
 import { Table, TableBody, TableCell, TableRow } from '@/components/ui/table'
 import { IProductProperties } from '@/types/product'
 
-SpecificationsTable.propTypes = {
-    data: PropTypes.object.isRequired,
+interface IProps {
+    data: IProductProperties
 }
 
-function SpecificationsTable({ data }: { data: IProductProperties }) {
+function SpecificationsTable({ data }: IProps) {
     return (
-        <div className='px-2'>
+        <div className="px-2">
             <Table>
                 <TableBody>
                     <TableRow>

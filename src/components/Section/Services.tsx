@@ -1,5 +1,6 @@
 import React from 'react'
-import services from '../../constants/services'
+
+import services from '@/constants/services'
 
 function Services() {
     return (

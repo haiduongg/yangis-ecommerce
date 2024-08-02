@@ -1,8 +1,9 @@
 import React from 'react'
-import ProductCard from '../ProductCard'
+import { Link } from 'react-router-dom'
+
+import ProductCard from '@/components/ProductCard'
 import { Button } from '@/components/ui/button'
 import IProduct from '@/types/product'
-import { Link } from 'react-router-dom'
 
 interface IProps {
     data: IProduct[]

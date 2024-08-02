@@ -1,21 +1,19 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { Helmet } from 'react-helmet-async'
 import { FiDelete } from 'react-icons/fi'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
-import { RootState } from '@/redux/store'
+import Breadcrumbs from '@/components/Breadcrumbs'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import {
     decrementQuantity,
     deleteCart,
     incrementQuantity,
 } from '@/redux/cartSlice'
-
-import Breadcrumbs from '@/components/Breadcrumbs'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-
+import { RootState } from '@/redux/store'
 import { formatMoney } from '@/utils/numberServices'
-import { Helmet } from 'react-helmet-async'
 
 const breadcrumbs = [
     { id: 1, path: '/', label: 'Home' },

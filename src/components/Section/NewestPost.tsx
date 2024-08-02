@@ -1,8 +1,9 @@
 import React from 'react'
+
 import Ps5 from '@/assets/images/PS5.png'
-import Women from '@/assets/images/women.png'
-import Speaker from '@/assets/images/speaker.png'
 import Perfume from '@/assets/images/perfume.png'
+import Speaker from '@/assets/images/speaker.png'
+import Women from '@/assets/images/women.png'
 
 function NewestPost() {
     return (

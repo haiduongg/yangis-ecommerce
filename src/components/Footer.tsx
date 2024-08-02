@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
+import QR from '@/assets/images/QR.png'
 import { Input } from '@/components/ui/input'
 import footerLinks from '@/constants/footerLinks'
-import QR from '@/assets/images/QR.png'
 
 function Footer() {
     return (

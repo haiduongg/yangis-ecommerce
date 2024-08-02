@@ -1,9 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet-async'
 import { useSearchParams } from 'react-router-dom'
 
-import productApi from '@/api/productApi'
 import producerApi from '@/api/producerApi'
-
+import productApi from '@/api/productApi'
+import Breadcrumbs from '@/components/Breadcrumbs'
 import ProductCard from '@/components/ProductCard'
 import {
     Select,
@@ -12,17 +13,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from '@/components/ui/select'
-import Breadcrumbs from '@/components/Breadcrumbs'
-import FilterBar from '@/features/Product/components/FilterBar'
-
-import initProducers from '@/constants/producers'
 import initCategories from '@/constants/categories'
+import initProducers from '@/constants/producers'
 import initProducts from '@/constants/products'
-
-import IProduct from '@/types/product'
-import IProducer from '@/types/producer'
+import FilterBar from '@/features/Product/components/FilterBar'
 import ICategory from '@/types/category'
-import { Helmet } from 'react-helmet-async'
+import IProducer from '@/types/producer'
+import IProduct from '@/types/product'
 
 const breadcrumbs = [
     {
@@ -121,21 +118,24 @@ function Products() {
                                     <SelectItem
                                         value="name"
                                         onChange={() => (value: string) =>
-                                            setSort(value)}
+                                            setSort(value)
+                                        }
                                     >
                                         A-Z
                                     </SelectItem>
                                     <SelectItem
                                         value="price"
                                         onChange={() => (value: string) =>
-                                            setSort(value)}
+                                            setSort(value)
+                                        }
                                     >
                                         Giá thấp nhất
                                     </SelectItem>
                                     <SelectItem
                                         value="-price"
                                         onChange={() => (value: string) =>
-                                            setSort(value)}
+                                            setSort(value)
+                                        }
                                     >
                                         Giá cao nhất
                                     </SelectItem>

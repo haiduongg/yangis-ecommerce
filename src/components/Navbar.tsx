@@ -1,17 +1,14 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { GrSearch, GrCart } from 'react-icons/gr'
 import { FaRegHeart } from 'react-icons/fa6'
 import { GoArrowUpRight } from 'react-icons/go'
-
-import { RootState } from '@/redux/store'
+import { GrCart, GrSearch } from 'react-icons/gr'
+import { useSelector } from 'react-redux'
+import { Link, NavLink } from 'react-router-dom'
 
 import { Input } from '@/components/ui/input'
-
-import { IProductWithQuantity } from '@/types/product'
-
 import navigates from '@/constants/navigates'
+import { RootState } from '@/redux/store'
+import { IProductWithQuantity } from '@/types/product'
 
 export default function Navbar() {
     const { cart } = useSelector((state: RootState) => state.cart)

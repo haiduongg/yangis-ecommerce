@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { Button } from '@/components/ui/button'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa6'
+
+import { Button } from '@/components/ui/button'
+import PropTypes from 'prop-types'
 
 ImagePreviewer.propTypes = {
     data: PropTypes.string.isRequired,

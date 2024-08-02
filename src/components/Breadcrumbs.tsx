@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
 import {
     Breadcrumb,
@@ -10,16 +9,11 @@ import {
     BreadcrumbSeparator,
 } from '@/components/ui/breadcrumb'
 
-Breadcrumbs.propTypes = {
-    breadcrumbs: PropTypes.array.isRequired,
-}
-interface IBreadcrumb {
-    id: number
-    path: string
-    label: string
+interface IProps {
+    breadcrumbs: { id: number; path: string; label: string }[]
 }
 
-function Breadcrumbs({ breadcrumbs }: { breadcrumbs: IBreadcrumb[] }) {
+function Breadcrumbs({ breadcrumbs }: IProps) {
     return (
         <React.Fragment>
             <Breadcrumb>
