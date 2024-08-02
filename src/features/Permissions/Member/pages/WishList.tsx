@@ -5,16 +5,21 @@ import ProductCard from '@/components/ProductCard'
 import { useSelector } from 'react-redux'
 import { RootState } from '@/redux/store'
 import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 
 function WishList() {
     const { wishlist } = useSelector((state: RootState) => state.wishlist)
 
     return (
         <React.Fragment>
+            <Helmet>
+                <title>Yêu thích</title>
+            </Helmet>
+
             <div className="mt-[80px]">
                 <div className="flex items-center justify-between">
                     <p className="text-[20px] leading-[26px]">
-                        Danh sách yêu thích (4)
+                        Danh sách yêu thích ({wishlist.length ?? 0})
                     </p>
                     <Button
                         variant={'outline'}

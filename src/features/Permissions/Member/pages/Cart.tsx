@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { FiDelete } from 'react-icons/fi'
 
@@ -14,7 +15,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
 import { formatMoney } from '@/utils/numberServices'
-import { Link } from 'react-router-dom'
+import { Helmet } from 'react-helmet-async'
 
 const breadcrumbs = [
     { id: 1, path: '/', label: 'Home' },
@@ -33,80 +34,100 @@ function Cart() {
 
     return (
         <React.Fragment>
+            <Helmet>
+                <title>Giỏ hàng</title>
+            </Helmet>
+
             <div className="mt-[80px]">
                 <Breadcrumbs breadcrumbs={breadcrumbs} />
                 <div className="mt-[80px]">
-                    <table className="w-full">
-                        <thead className="grid grid-cols-12 shadow-xxl py-5">
-                            <th className="col-span-4">Sản phẩm</th>
-                            <th className="col-span-2">Giá tiền</th>
-                            <th className="col-span-3">Số lượng</th>
-                            <th className="col-span-2">Thành tiền</th>
-                            <th className="col-span-1"></th>
-                        </thead>
-                        <tbody>
-                            {cart.map((product) => (
-                                <tr
-                                    key={product._id}
-                                    className="grid grid-cols-12 py-5 mt-10 items-center"
-                                >
-                                    <td className="col-span-4 ml-10 flex items-center">
-                                        <img
-                                            src={product.featureImage}
-                                            alt={product.name}
-                                            className="size-[54px]"
-                                        />
-                                        <p className="ml-5">{product.name}</p>
-                                    </td>
-                                    <td className="col-span-2 text-center">
-                                        {formatMoney(product.price)}
-                                    </td>
-                                    <td className="col-span-3 flex items-center justify-center gap-5">
-                                        <Button
-                                            className="w-[40px]"
-                                            onClick={() => {
-                                                dispatch(
-                                                    decrementQuantity(
-                                                        product._id
-                                                    )
-                                                )
-                                            }}
+                    {cart.length == 0 && (
+                        <div className="w-full mb-[80px]">
+                            <p className="text-center">
+                                Không tìm thấy sản phẩm nào trong giỏ hàng.
+                            </p>
+                        </div>
+                    )}
+                    {cart.length > 0 && (
+                        <table className="w-full">
+                            <thead className="grid grid-cols-12 shadow-xxl py-5">
+                                <th className="col-span-4">Sản phẩm</th>
+                                <th className="col-span-2">Giá tiền</th>
+                                <th className="col-span-3">Số lượng</th>
+                                <th className="col-span-2">Thành tiền</th>
+                                <th className="col-span-1"></th>
+                            </thead>
+                            {
+                                <tbody>
+                                    {cart.map((product) => (
+                                        <tr
+                                            key={product._id}
+                                            className="grid grid-cols-12 py-5 mt-10 items-center"
                                         >
-                                            -
-                                        </Button>
-                                        {product.quantity}
-                                        <Button
-                                            className="w-[40px]"
-                                            onClick={() => {
-                                                dispatch(
-                                                    incrementQuantity(
-                                                        product._id
-                                                    )
-                                                )
-                                            }}
-                                        >
-                                            +
-                                        </Button>
-                                    </td>
-                                    <td className="col-span-2 text-center">
-                                        {formatMoney(
-                                            product.price * product.quantity
-                                        )}
-                                    </td>
-                                    <td className="col-span-1 grid place-items-center">
-                                        <Button
-                                            variant={'destructive'}
-                                            onClick={() => {
-                                                handleDeleteCart(product._id)
-                                            }}
-                                        >
-                                            <FiDelete size={20} />
-                                        </Button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                                            <td className="col-span-4 ml-10 flex items-center">
+                                                <img
+                                                    src={product.featureImage}
+                                                    alt={product.name}
+                                                    className="size-[54px]"
+                                                />
+                                                <p className="ml-5">
+                                                    {product.name}
+                                                </p>
+                                            </td>
+                                            <td className="col-span-2 text-center">
+                                                {formatMoney(product.price)}
+                                            </td>
+                                            <td className="col-span-3 flex items-center justify-center gap-5">
+                                                <Button
+                                                    className="w-[40px]"
+                                                    onClick={() => {
+                                                        dispatch(
+                                                            decrementQuantity(
+                                                                product._id
+                                                            )
+                                                        )
+                                                    }}
+                                                >
+                                                    -
+                                                </Button>
+                                                {product.quantity}
+                                                <Button
+                                                    className="w-[40px]"
+                                                    onClick={() => {
+                                                        dispatch(
+                                                            incrementQuantity(
+                                                                product._id
+                                                            )
+                                                        )
+                                                    }}
+                                                >
+                                                    +
+                                                </Button>
+                                            </td>
+                                            <td className="col-span-2 text-center">
+                                                {formatMoney(
+                                                    product.price *
+                                                        product.quantity
+                                                )}
+                                            </td>
+                                            <td className="col-span-1 grid place-items-center">
+                                                <Button
+                                                    variant={'destructive'}
+                                                    onClick={() => {
+                                                        handleDeleteCart(
+                                                            product._id
+                                                        )
+                                                    }}
+                                                >
+                                                    <FiDelete size={20} />
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            }
+                        </table>
+                    )}
                 </div>
                 <div className="mt-6 flex justify-end">
                     <Button
@@ -123,9 +144,7 @@ function Cart() {
                             className="w-[400px] h-[56px] text-base px-5"
                             placeholder="Mã giảm giá"
                         />
-                        <Button className="w-[211px] h-[56px]">
-                            Áp dụng
-                        </Button>
+                        <Button className="w-[211px] h-[56px]">Áp dụng</Button>
                     </div>
                     <div className="w-[470px] border-[1px] rounded-sm py-8 px-6">
                         <p className="text-[20px] leading-[28px] font-medium">

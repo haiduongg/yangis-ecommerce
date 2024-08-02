@@ -1,9 +1,9 @@
-import { IconType } from "react-icons"
+import { IconType } from 'react-icons'
 
 export default interface ICategory {
     _id: string
     name: string
-    icon?: string | IconType
+    icon?: IconType | string
     products?: string[]
     createdAt: string
     updatedAt: string

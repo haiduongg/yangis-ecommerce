@@ -16,6 +16,7 @@ import SpecificationsTable from '../components/SpecificationsTable'
 import SpecialFeatures from '../components/SpecialFeatures'
 import UserReview from '../components/UserReview'
 import ImagePreviewer from '../components/ImagePreviewer'
+import { Helmet } from 'react-helmet-async'
 
 function ProductDetail() {
     const params = useParams()
@@ -108,6 +109,10 @@ function ProductDetail() {
 
     return (
         <React.Fragment>
+            <Helmet>
+                <title>{product.name}</title>
+            </Helmet>
+
             <div className="mt-20">
                 <Breadcrumbs breadcrumbs={breadcrumbs} />
             </div>

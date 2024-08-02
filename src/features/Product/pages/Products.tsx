@@ -22,6 +22,7 @@ import initProducts from '@/constants/products'
 import IProduct from '@/types/product'
 import IProducer from '@/types/producer'
 import ICategory from '@/types/category'
+import { Helmet } from 'react-helmet-async'
 
 const breadcrumbs = [
     {
@@ -88,6 +89,10 @@ function Products() {
 
     return (
         <React.Fragment>
+            <Helmet>
+                <title>Sản phẩm</title>
+            </Helmet>
+
             <div className="my-5">
                 <Breadcrumbs breadcrumbs={breadcrumbs} />
             </div>

@@ -14,6 +14,7 @@ import {
 } from '@/components/Section/index'
 import IProduct from '@/types/product'
 import productApi from '@/api/productApi'
+import { Helmet } from 'react-helmet-async'
 
 function HomePage() {
     const initalProducts: IProduct = {
@@ -73,7 +74,7 @@ function HomePage() {
                 type: 'USB Type-C',
             },
         },
-        price: "29290000",
+        price: 29290000,
         discount: '10%',
         category_id: '66a5237a51d1404e5b5ca301',
         producer_id: '669299b8d2689b4046630a33',
@@ -96,6 +97,10 @@ function HomePage() {
 
     return (
         <React.Fragment>
+            <Helmet>
+                <title>Yangis</title>
+            </Helmet>
+
             <div className="flex items-center justify-between">
                 <ul className="pt-6 pr-[45px] flex flex-col">
                     {collections.map((collection) => (
