@@ -4,10 +4,50 @@ const products: IProduct[] = [
     {
         _id: '1',
         name: 'iPhone 15 Pro Max',
-        featureImage:
-            'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-thumbnew-600x600.jpg',
+        featureImage: [
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-4-1020x570.jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/iphone-15-pro-max-256gb---10--1020x570.jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-256gb--(2).jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-256gb--(4).jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-256gb--(5).jpg',
+        ],
         selection: {
-            color: ['Titan Trắng', 'Titan Đen', 'Titan Tự nhiên', 'Titan Xanh'],
+            color: [
+                {
+                    label: 'Titan xanh',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-1-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-3-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-4-1.jpg',
+                    ],
+                },
+                {
+                    label: 'Titan trắng',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-white-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-white-3-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-white-4-1.jpg',
+                    ],
+                },
+                {
+                    label: 'Titan đen',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-black-1-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-black-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-black-3-1.jpg',
+                    ],
+                },
+                {
+                    label: 'Titan tự nhiên',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-1-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-3-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-4-1.jpg',
+                    ],
+                },
+            ],
             storage: ['256GB', '512GB', '1TB'],
         },
         properties: {
@@ -58,22 +98,64 @@ const products: IProduct[] = [
                 type: 'USB Type-C',
             },
         },
-        price: '29290000',
+        price: 29290000,
         discount: '10%',
         category_id: '66a5237a51d1404e5b5ca301',
         producer_id: '669299b8d2689b4046630a33',
         reviews: [],
         createdAt: '2024-07-29T17:32:40.594Z',
-        updatedAt: '2024-07-29T17:32:40.594Z',
+        updatedAt: '2024-08-02T18:47:34.645Z',
         __v: 0,
+        thumbnail:
+            'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-thumbnew-600x600.jpg',
     },
     {
         _id: '2',
         name: 'iPhone 15 Pro Max',
-        featureImage:
-            'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-thumbnew-600x600.jpg',
+        featureImage: [
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-4-1020x570.jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/iphone-15-pro-max-256gb---10--1020x570.jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-256gb--(2).jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-256gb--(4).jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-256gb--(5).jpg',
+        ],
         selection: {
-            color: ['Titan Trắng', 'Titan Đen', 'Titan Tự nhiên', 'Titan Xanh'],
+            color: [
+                {
+                    label: 'Titan xanh',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-1-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-3-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-4-1.jpg',
+                    ],
+                },
+                {
+                    label: 'Titan trắng',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-white-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-white-3-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-white-4-1.jpg',
+                    ],
+                },
+                {
+                    label: 'Titan đen',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-black-1-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-black-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-black-3-1.jpg',
+                    ],
+                },
+                {
+                    label: 'Titan tự nhiên',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-1-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-3-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-4-1.jpg',
+                    ],
+                },
+            ],
             storage: ['256GB', '512GB', '1TB'],
         },
         properties: {
@@ -124,22 +206,64 @@ const products: IProduct[] = [
                 type: 'USB Type-C',
             },
         },
-        price: '29290000',
+        price: 29290000,
         discount: '10%',
         category_id: '66a5237a51d1404e5b5ca301',
         producer_id: '669299b8d2689b4046630a33',
         reviews: [],
         createdAt: '2024-07-29T17:32:40.594Z',
-        updatedAt: '2024-07-29T17:32:40.594Z',
+        updatedAt: '2024-08-02T18:47:34.645Z',
         __v: 0,
+        thumbnail:
+            'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-thumbnew-600x600.jpg',
     },
     {
         _id: '3',
         name: 'iPhone 15 Pro Max',
-        featureImage:
-            'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-thumbnew-600x600.jpg',
+        featureImage: [
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-4-1020x570.jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/iphone-15-pro-max-256gb---10--1020x570.jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-256gb--(2).jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-256gb--(4).jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-256gb--(5).jpg',
+        ],
         selection: {
-            color: ['Titan Trắng', 'Titan Đen', 'Titan Tự nhiên', 'Titan Xanh'],
+            color: [
+                {
+                    label: 'Titan xanh',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-1-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-3-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-4-1.jpg',
+                    ],
+                },
+                {
+                    label: 'Titan trắng',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-white-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-white-3-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-white-4-1.jpg',
+                    ],
+                },
+                {
+                    label: 'Titan đen',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-black-1-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-black-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-black-3-1.jpg',
+                    ],
+                },
+                {
+                    label: 'Titan tự nhiên',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-1-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-3-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-4-1.jpg',
+                    ],
+                },
+            ],
             storage: ['256GB', '512GB', '1TB'],
         },
         properties: {
@@ -190,22 +314,64 @@ const products: IProduct[] = [
                 type: 'USB Type-C',
             },
         },
-        price: '29290000',
+        price: 29290000,
         discount: '10%',
         category_id: '66a5237a51d1404e5b5ca301',
         producer_id: '669299b8d2689b4046630a33',
         reviews: [],
         createdAt: '2024-07-29T17:32:40.594Z',
-        updatedAt: '2024-07-29T17:32:40.594Z',
+        updatedAt: '2024-08-02T18:47:34.645Z',
         __v: 0,
+        thumbnail:
+            'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-thumbnew-600x600.jpg',
     },
     {
         _id: '4',
         name: 'iPhone 15 Pro Max',
-        featureImage:
-            'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-thumbnew-600x600.jpg',
+        featureImage: [
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-4-1020x570.jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/iphone-15-pro-max-256gb---10--1020x570.jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-256gb--(2).jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-256gb--(4).jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-256gb--(5).jpg',
+        ],
         selection: {
-            color: ['Titan Trắng', 'Titan Đen', 'Titan Tự nhiên', 'Titan Xanh'],
+            color: [
+                {
+                    label: 'Titan xanh',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-1-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-3-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-4-1.jpg',
+                    ],
+                },
+                {
+                    label: 'Titan trắng',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-white-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-white-3-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-white-4-1.jpg',
+                    ],
+                },
+                {
+                    label: 'Titan đen',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-black-1-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-black-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-black-3-1.jpg',
+                    ],
+                },
+                {
+                    label: 'Titan tự nhiên',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-1-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-3-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-4-1.jpg',
+                    ],
+                },
+            ],
             storage: ['256GB', '512GB', '1TB'],
         },
         properties: {
@@ -256,22 +422,64 @@ const products: IProduct[] = [
                 type: 'USB Type-C',
             },
         },
-        price: '29290000',
+        price: 29290000,
         discount: '10%',
         category_id: '66a5237a51d1404e5b5ca301',
         producer_id: '669299b8d2689b4046630a33',
         reviews: [],
         createdAt: '2024-07-29T17:32:40.594Z',
-        updatedAt: '2024-07-29T17:32:40.594Z',
+        updatedAt: '2024-08-02T18:47:34.645Z',
         __v: 0,
+        thumbnail:
+            'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-thumbnew-600x600.jpg',
     },
     {
         _id: '5',
         name: 'iPhone 15 Pro Max',
-        featureImage:
-            'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-thumbnew-600x600.jpg',
+        featureImage: [
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-4-1020x570.jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/iphone-15-pro-max-256gb---10--1020x570.jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-256gb--(2).jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-256gb--(4).jpg',
+            'https://cdn.tgdd.vn/Products/Images/42/305658/Slider/vi-vn-iphone-15-pro-max-256gb--(5).jpg',
+        ],
         selection: {
-            color: ['Titan Trắng', 'Titan Đen', 'Titan Tự nhiên', 'Titan Xanh'],
+            color: [
+                {
+                    label: 'Titan xanh',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-1-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-3-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-4-1.jpg',
+                    ],
+                },
+                {
+                    label: 'Titan trắng',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-white-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-white-3-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-white-4-1.jpg',
+                    ],
+                },
+                {
+                    label: 'Titan đen',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-black-1-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-black-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-black-3-1.jpg',
+                    ],
+                },
+                {
+                    label: 'Titan tự nhiên',
+                    images: [
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-1-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-2-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-3-1.jpg',
+                        'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-tu-nhien-4-1.jpg',
+                    ],
+                },
+            ],
             storage: ['256GB', '512GB', '1TB'],
         },
         properties: {
@@ -322,14 +530,16 @@ const products: IProduct[] = [
                 type: 'USB Type-C',
             },
         },
-        price: '29290000',
+        price: 29290000,
         discount: '10%',
         category_id: '66a5237a51d1404e5b5ca301',
         producer_id: '669299b8d2689b4046630a33',
         reviews: [],
         createdAt: '2024-07-29T17:32:40.594Z',
-        updatedAt: '2024-07-29T17:32:40.594Z',
+        updatedAt: '2024-08-02T18:47:34.645Z',
         __v: 0,
+        thumbnail:
+            'https://cdn.tgdd.vn/Products/Images/42/305658/iphone-15-pro-max-blue-thumbnew-600x600.jpg',
     },
 ]
 

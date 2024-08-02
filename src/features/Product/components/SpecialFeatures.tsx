@@ -1,8 +1,10 @@
 interface IProps {
-    data: any
+    data: object
 }
 
 function SpecialFeatures({ data }: IProps) {
+    data
+
     return (
         <div className="mt-3 text-justify">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, quasi

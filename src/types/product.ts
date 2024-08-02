@@ -1,3 +1,8 @@
+// Interface children
+export interface ISelection {
+    color?: { label: string; images: string[] }[]
+    storage: string[]
+}
 export interface IProductProperties {
     screen?: {
         size?: string
@@ -31,11 +36,13 @@ export interface IProductProperties {
 export interface IProductWithQuantity extends IProduct {
     quantity: number
 }
+
 export default interface IProduct {
     _id: string
     name: string
-    featureImage: string
-    selection?: { color?: string[]; storage: string[] }
+    thumbnail: string
+    featureImage?: string[]
+    selection?: ISelection
     properties?: IProductProperties
     price: number
     discount?: string

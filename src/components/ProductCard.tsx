@@ -51,7 +51,7 @@ function ProductCard({
                         </p>
                     </div>
                     <img
-                        src={product.featureImage}
+                        src={product.thumbnail}
                         alt={product.name}
                         height={230}
                         className="h-[230px] object-contain scale-75"
