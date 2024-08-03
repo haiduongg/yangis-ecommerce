@@ -1,4 +1,4 @@
-import { IProducer } from '@/types/producer'
+import IProducer from '@/types/producer'
 
 const producers: IProducer[] = [
     {
