@@ -1,8 +1,9 @@
 import React from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
+
+import ScrollToTop from '@/components/ScrollToTop'
 import DefaultLayout from '@/layouts/DefaultLayout'
 import globalRoutes from '@/routes/globalRoutes'
-import ScrollToTop from '@/components/ScrollToTop'
 
 export default function App() {
     const routes = globalRoutes

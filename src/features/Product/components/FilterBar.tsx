@@ -185,6 +185,7 @@ function FilterBar({ producers, categories, filter, setFilter }: IProps) {
                                             price: item.value,
                                         }))
                                     }}
+                                    key={item.id}
                                 >
                                     <RadioGroupItem
                                         value={item.value}
