@@ -55,6 +55,7 @@ function ProductDetail() {
     useEffect(() => {
         const searchParamsHandler = () => {
             const q: { color?: string; storage?: string } = {}
+            // TODO: Thay đổi giá trị Titan xanh và 256GB thành giá trị biến
             if (selection.color != 'Titan xanh') {
                 q['color'] = selection.color
             }

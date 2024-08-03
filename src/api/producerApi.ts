@@ -1,5 +1,5 @@
 import axiosClient from '@/api//axiosClient'
-import { IProducer } from '@/types/producer'
+import IProducer from '@/types/producer'
 
 const producerApi = {
     getAll: async (params: object) => {

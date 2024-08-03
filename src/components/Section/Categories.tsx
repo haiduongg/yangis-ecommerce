@@ -32,9 +32,11 @@ function Categories() {
                             key={category._id}
                             className="h-[170px] rounded-sm border-[1px] border-neutral-400 flex flex-col items-center justify-center gap-4 transition duration-200 hover:bg-[#DB4444] hover:text-white cursor-pointer"
                         >
-                            <div className="p-[6px]">
-                                <category.icon size={44} />
-                            </div>
+                            {category.icon && (
+                                <div className="p-[6px]">
+                                    <category.icon size={44} />
+                                </div>
+                            )}
                             <p className="text-base">{category.name}</p>
                         </div>
                     </Link>

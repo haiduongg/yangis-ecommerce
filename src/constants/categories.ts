@@ -1,10 +1,10 @@
+import { HiOutlineComputerDesktop } from 'react-icons/hi2'
 import {
-    IoPhonePortraitOutline,
-    IoWatchOutline,
     IoCameraOutline,
     IoGameControllerOutline,
+    IoPhonePortraitOutline,
+    IoWatchOutline,
 } from 'react-icons/io5'
-import { HiOutlineComputerDesktop } from 'react-icons/hi2'
 import { RiHeadphoneLine } from 'react-icons/ri'
 
 import ICategory from '@/types/category'

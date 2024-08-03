@@ -78,7 +78,7 @@ export default function FlashSales() {
 
             <div className="grid grid-cols-5 gap-8">
                 {products.map((product) => (
-                    <ProductCard key={product.id} product={product} />
+                    <ProductCard key={product._id} product={product} />
                 ))}
             </div>
 

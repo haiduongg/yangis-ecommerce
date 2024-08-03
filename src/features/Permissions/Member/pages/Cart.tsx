@@ -64,7 +64,7 @@ function Cart() {
                                         >
                                             <td className="col-span-4 ml-10 flex items-center">
                                                 <img
-                                                    src={product.featureImage}
+                                                    src={product.thumbnail}
                                                     alt={product.name}
                                                     className="size-[54px]"
                                                 />
