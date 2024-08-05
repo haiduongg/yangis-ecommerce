@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useSearchParams } from 'react-router-dom'
 
@@ -85,16 +85,16 @@ function Products() {
     }, [filter, setSearchParams])
 
     return (
-        <React.Fragment>
+        <div className="container mx-auto">
             <Helmet>
-                <title>Sản phẩm</title>
+                <title>Tất cả sản phẩm</title>
             </Helmet>
 
-            <div className="my-5">
+            <div className="my-4">
                 <Breadcrumbs breadcrumbs={breadcrumbs} />
             </div>
-            <h1 className="text-2xl font-bold">Tất cả sản phẩm</h1>
-            <div className="mt-5 grid grid-cols-4 gap-8">
+            <h1 className="text-3xl font-bold mb-8">Tất cả sản phẩm</h1>
+            <div className="grid grid-cols-4 gap-8">
                 <FilterBar
                     producers={producers}
                     categories={categories}
@@ -102,7 +102,7 @@ function Products() {
                     setFilter={setFilter}
                 />
                 <div className="col-span-3 h-fit">
-                    <div className="flex items-start justify-between text-[14px] leading-none">
+                    <div className="mb-3 flex items-center justify-between text-[14px] leading-none">
                         <p>
                             Tìm thấy{' '}
                             <span className="font-bold">{products.length}</span>{' '}
@@ -111,7 +111,7 @@ function Products() {
                         <div className="flex items-center justify-end gap-3">
                             <p className="opacity-60">Sắp xếp theo:</p>
                             <Select>
-                                <SelectTrigger className="w-[180px]">
+                                <SelectTrigger className="w-[180px] h-[30px] focus:ring-0">
                                     <SelectValue placeholder="A-Z" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -143,14 +143,41 @@ function Products() {
                             </Select>
                         </div>
                     </div>
-                    <div className="mt-5 grid grid-cols-4 gap-x-8 gap-y-[60px]">
+                    <div className="grid grid-cols-4 gap-[11px]">
+                        {products.map((product) => (
+                            <ProductCard key={product._id} product={product} />
+                        ))}
+                        {products.map((product) => (
+                            <ProductCard key={product._id} product={product} />
+                        ))}
+                        {products.map((product) => (
+                            <ProductCard key={product._id} product={product} />
+                        ))}
+                        {products.map((product) => (
+                            <ProductCard key={product._id} product={product} />
+                        ))}
+                        {products.map((product) => (
+                            <ProductCard key={product._id} product={product} />
+                        ))}
+                        {products.map((product) => (
+                            <ProductCard key={product._id} product={product} />
+                        ))}
+                        {products.map((product) => (
+                            <ProductCard key={product._id} product={product} />
+                        ))}
+                        {products.map((product) => (
+                            <ProductCard key={product._id} product={product} />
+                        ))}
+                        {products.map((product) => (
+                            <ProductCard key={product._id} product={product} />
+                        ))}
                         {products.map((product) => (
                             <ProductCard key={product._id} product={product} />
                         ))}
                     </div>
                 </div>
             </div>
-        </React.Fragment>
+        </div>
     )
 }
 

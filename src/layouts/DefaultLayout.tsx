@@ -1,7 +1,9 @@
-import React, { ReactNode } from 'react'
+import { ReactNode } from 'react'
+
+import Footer from '@/components/Footer'
+import Navbar from '@/components/Navbar'
+import TopHeader from '@/components/TopHeader'
 import PropTypes from 'prop-types'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
 
 DefaultLayout.propTypes = {
     children: PropTypes.node,
@@ -9,15 +11,19 @@ DefaultLayout.propTypes = {
 
 function DefaultLayout({ children }: { children: ReactNode }) {
     return (
-        <React.Fragment>
+        <div
+            id="page"
+            className="bg-wallground-light dark:bg-wallground-dark text-black dark:text-white "
+        >
             <header>
-                <Header />
+                <Navbar />
+                <TopHeader />
             </header>
-            <main className="container mx-auto mb-[140px]">{children}</main>
+            <main className="mb-[140px]">{children}</main>
             <footer>
                 <Footer />
             </footer>
-        </React.Fragment>
+        </div>
     )
 }
 

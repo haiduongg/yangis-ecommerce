@@ -42,168 +42,164 @@ function FilterBar({ producers, categories, filter, setFilter }: IProps) {
         producer: boolean
         price: boolean
     }>({
-        category: false,
-        producer: false,
-        price: false,
+        category: true,
+        producer: true,
+        price: true,
     })
 
     return (
-        <React.Fragment>
-            <div className="col-span-1 border rounded-xl divide-y h-fit select-none">
-                <h2 className="text-lg px-5 py-4 font-semibold leading-none">
-                    <IoFilter
-                        className="inline-block mr-3 leading-none align-middle"
-                        size={23}
+        <div className="sticky top-1 bg-white col-span-1 rounded-xl divide-y h-fit select-none">
+            <h2 className="text-lg px-5 py-4 font-semibold leading-none">
+                <IoFilter
+                    className="inline-block mr-3 leading-none align-middle"
+                    size={23}
+                />
+                Bộ lọc tìm kiếm
+            </h2>
+
+            <div className="px-5 py-4">
+                <div
+                    className="flex items-center justify-between cursor-pointer"
+                    onClick={() => {
+                        setCollapse((pre) => ({
+                            ...pre,
+                            category: !collapse.category,
+                        }))
+                    }}
+                >
+                    <h3 className="text-base leading-none font-semibold">
+                        Danh mục
+                    </h3>
+                    <FaChevronDown
+                        className={`${
+                            collapse.category == true ? '' : 'rotate-90'
+                        } transition duration-200`}
                     />
-                    Bộ lọc tìm kiếm
-                </h2>
-
-                <div className="px-5 py-4">
-                    <div
-                        className="flex items-center justify-between cursor-pointer"
-                        onClick={() => {
-                            setCollapse((pre) => ({
-                                ...pre,
-                                category: !collapse.category,
-                            }))
-                        }}
-                    >
-                        <h3 className="text-base leading-none font-semibold">
-                            Danh mục
-                        </h3>
-                        <FaChevronDown
-                            className={`${
-                                collapse.category == true ? '' : 'rotate-90'
-                            } transition duration-200`}
-                        />
-                    </div>
-                    <div
-                        className={`${
-                            collapse.category == true ? '' : 'hidden'
-                        } mt-5 grid grid-cols-2 gap-3`}
-                    >
-                        {categories.map((category) => (
-                            <Button
-                                key={category._id}
-                                variant={
-                                    filter.category === category.name
-                                        ? 'default'
-                                        : 'outline'
-                                }
-                                onClick={() => {
-                                    setFilter((pre) => ({
-                                        ...pre,
-                                        category: category.name,
-                                    }))
-                                }}
-                            >
-                                {category.name}
-                            </Button>
-                        ))}
-                    </div>
                 </div>
-
-                <div className="px-5 py-4">
-                    <div
-                        className="flex items-center justify-between cursor-pointer"
-                        onClick={() => {
-                            setCollapse((pre) => ({
-                                ...pre,
-                                producer: !collapse.producer,
-                            }))
-                        }}
-                    >
-                        <h3 className="text-base leading-none font-semibold">
-                            Hãng sản xuất
-                        </h3>
-                        <FaChevronDown
-                            className={`${
-                                collapse.producer == true ? '' : 'rotate-90'
-                            } transition duration-200`}
-                        />
-                    </div>
-                    <div
-                        className={`${
-                            collapse.producer == true ? '' : 'hidden'
-                        } mt-5 grid grid-cols-2 gap-3`}
-                    >
-                        {producers.map((producer) => (
-                            <Button
-                                key={producer._id}
-                                variant={
-                                    filter.producer === producer.name
-                                        ? 'default'
-                                        : 'outline'
-                                }
-                                onClick={() => {
-                                    setFilter((pre) => ({
-                                        ...pre,
-                                        producer: producer.name,
-                                    }))
-                                }}
-                            >
-                                {producer.name}
-                            </Button>
-                        ))}
-                    </div>
-                </div>
-
-                <div className="px-5 py-4">
-                    <div
-                        className="flex items-center justify-between cursor-pointer"
-                        onClick={() => {
-                            setCollapse((pre) => ({
-                                ...pre,
-                                price: !collapse.price,
-                            }))
-                        }}
-                    >
-                        <h3 className="text-base leading-none font-semibold">
-                            Mức giá
-                        </h3>
-                        <FaChevronDown
-                            className={`${
-                                collapse.price == true ? '' : 'rotate-90'
-                            } transition duration-200`}
-                        />
-                    </div>
-                    <div
-                        className={`${
-                            collapse.price == true ? '' : 'hidden'
-                        } mt-5`}
-                    >
-                        <RadioGroup
-                            defaultValue={radioPrice[0].value}
-                            className="space-y-2"
+                <div
+                    className={`${
+                        collapse.category == true ? '' : 'hidden'
+                    } mt-5 grid grid-cols-2 gap-3`}
+                >
+                    {categories.map((category) => (
+                        <Button
+                            key={category._id}
+                            variant={
+                                filter.category === category.name
+                                    ? 'default'
+                                    : 'outline'
+                            }
+                            onClick={() => {
+                                setFilter((pre) => ({
+                                    ...pre,
+                                    category: category.name,
+                                }))
+                            }}
                         >
-                            {radioPrice.map((item) => (
-                                <div
-                                    className="flex items-center space-x-2"
-                                    onClick={() => {
-                                        setFilter((pre) => ({
-                                            ...pre,
-                                            price: item.value,
-                                        }))
-                                    }}
-                                    key={item.id}
-                                >
-                                    <RadioGroupItem
-                                        value={item.value}
-                                        id={item.id}
-                                    />
-                                    <Label
-                                        htmlFor={item.id}
-                                        className="cursor-pointer"
-                                    >
-                                        {item.label}
-                                    </Label>
-                                </div>
-                            ))}
-                        </RadioGroup>
-                    </div>
+                            {category.name}
+                        </Button>
+                    ))}
                 </div>
             </div>
-        </React.Fragment>
+
+            <div className="px-5 py-4">
+                <div
+                    className="flex items-center justify-between cursor-pointer"
+                    onClick={() => {
+                        setCollapse((pre) => ({
+                            ...pre,
+                            producer: !collapse.producer,
+                        }))
+                    }}
+                >
+                    <h3 className="text-base leading-none font-semibold">
+                        Hãng sản xuất
+                    </h3>
+                    <FaChevronDown
+                        className={`${
+                            collapse.producer == true ? '' : 'rotate-90'
+                        } transition duration-200`}
+                    />
+                </div>
+                <div
+                    className={`${
+                        collapse.producer == true ? '' : 'hidden'
+                    } mt-5 grid grid-cols-2 gap-3`}
+                >
+                    {producers.map((producer) => (
+                        <Button
+                            key={producer._id}
+                            variant={
+                                filter.producer === producer.name
+                                    ? 'default'
+                                    : 'outline'
+                            }
+                            onClick={() => {
+                                setFilter((pre) => ({
+                                    ...pre,
+                                    producer: producer.name,
+                                }))
+                            }}
+                        >
+                            {producer.name}
+                        </Button>
+                    ))}
+                </div>
+            </div>
+
+            <div className="px-5 py-4">
+                <div
+                    className="flex items-center justify-between cursor-pointer"
+                    onClick={() => {
+                        setCollapse((pre) => ({
+                            ...pre,
+                            price: !collapse.price,
+                        }))
+                    }}
+                >
+                    <h3 className="text-base leading-none font-semibold">
+                        Mức giá
+                    </h3>
+                    <FaChevronDown
+                        className={`${
+                            collapse.price == true ? '' : 'rotate-90'
+                        } transition duration-200`}
+                    />
+                </div>
+                <div
+                    className={`${collapse.price == true ? '' : 'hidden'} mt-5`}
+                >
+                    <RadioGroup
+                        defaultValue={radioPrice[0].value}
+                        className="space-y-2"
+                    >
+                        {radioPrice.map((item) => (
+                            <div
+                                className="flex items-center space-x-2"
+                                onClick={() => {
+                                    setFilter((pre) => ({
+                                        ...pre,
+                                        price: item.value,
+                                    }))
+                                }}
+                                key={item.id}
+                            >
+                                <RadioGroupItem
+                                    value={item.value}
+                                    id={item.id}
+                                />
+                                <Label
+                                    htmlFor={item.id}
+                                    className="cursor-pointer"
+                                >
+                                    {item.label}
+                                </Label>
+                            </div>
+                        ))}
+                    </RadioGroup>
+                </div>
+            </div>
+        </div>
     )
 }
 

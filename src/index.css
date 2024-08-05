@@ -4,6 +4,7 @@
 
 @layer base {
     :root {
+        /* use HSL color */
         --background: 0 0% 100%;
         --foreground: 222.2 84% 4.9%;
 
@@ -83,17 +84,17 @@
         box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
     }
     .active {
-        @apply relative text-black no-underline hover:text-black pb-1;
+        @apply relative text-white no-underline hover:text-white pb-1;
     }
     .active::before {
-        @apply content-[""] absolute block w-full h-0.5 bg-black transition-transform duration-200 ease-linear left-0 -bottom-[2px];
+        @apply content-[""] absolute block w-full h-0.5 bg-white transition-transform duration-200 ease-linear left-0 -bottom-[2px];
     }
 
     .nav-link {
-        @apply relative text-black no-underline hover:text-black pb-1;
+        @apply relative text-white no-underline hover:text-white pb-1;
     }
     .nav-link::before {
-        @apply content-[""] absolute block w-full h-0.5 bg-black transition-transform duration-200 ease-linear scale-x-0 left-0 -bottom-[2px];
+        @apply content-[""] absolute block w-full h-0.5 bg-white transition-transform duration-200 ease-linear scale-x-0 left-0 -bottom-[2px];
     }
     .nav-link:hover::before {
         @apply scale-x-100;

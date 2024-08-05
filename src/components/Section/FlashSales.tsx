@@ -36,13 +36,13 @@ export default function FlashSales() {
                     <rect width="20" height="40" rx="4" fill="#DB4444" />
                 </svg>
                 <p className="font-semibold text-base leading-[20px] text-[#DB4444]">
-                    Today's
+                    Hôm nay
                 </p>
             </div>
 
             <div className="flex items-center justify-start gap-[87px] mb-[40px]">
                 <h2 className="mt-[11px] text-[36px] leading-[48px] font-semibold tracking-[4%]">
-                    Flash Sales
+                    Khuyến mãi
                 </h2>
                 <div className="flex items-center justify-start">
                     {FlashSaleCountdown.map((item, index) => (

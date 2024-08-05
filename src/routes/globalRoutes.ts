@@ -1,15 +1,14 @@
 import { ElementType } from 'react'
-import HomePage from '@/pages/HomePage'
-import SignupPage from '@/pages/SignupPage'
-import LoginPage from '@/pages/LoginPage'
-import Error from '@/pages/Error'
-// Permission
+
 import Cart from '@/features/Permissions/Member/pages/Cart'
-import WishList from '@/features/Permissions/Member/pages/WishList'
 import Checkout from '@/features/Permissions/Member/pages/Checkout'
-// Product
-import Products from '@/features/Product/pages/Products'
+import WishList from '@/features/Permissions/Member/pages/WishList'
 import ProductDetail from '@/features/Product/pages/ProductDetail'
+import Products from '@/features/Product/pages/Products'
+import Error from '@/pages/Error'
+import HomePage from '@/pages/HomePage'
+import LoginPage from '@/pages/LoginPage'
+import SignupPage from '@/pages/SignupPage'
 
 interface IRoute {
     id: number

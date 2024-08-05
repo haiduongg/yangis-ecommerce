@@ -17,7 +17,15 @@ module.exports = {
             },
         },
         extend: {
+            fontFamily: {
+                rampart: ['Rampart One'],
+            },
             colors: {
+                wallground: {
+                    light: '#f3f4f6',
+                    dark: '#18191a',
+                },
+                link: '#1250dc',
                 border: 'hsl(var(--border))',
                 input: 'hsl(var(--input))',
                 ring: 'hsl(var(--ring))',

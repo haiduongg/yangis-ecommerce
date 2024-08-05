@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.7.0",
+    "@radix-ui/react-checkbox": "^1.1.1",
     "@radix-ui/react-label": "^2.1.0",
     "@radix-ui/react-progress": "^1.1.0",
     "@radix-ui/react-radio-group": "^1.2.0",
@@ -23,6 +24,9 @@
     "class-variance-authority": "^0.7.0",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
+    "embla-carousel-autoplay": "^8.1.8",
+    "embla-carousel-react": "^8.1.8",
+    "framer-motion": "^11.3.21",
     "lucide-react": "^0.400.0",
     "npx": "^10.2.2",
     "path": "^0.12.7",

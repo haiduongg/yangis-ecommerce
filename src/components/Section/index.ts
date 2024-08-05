@@ -1,4 +1,4 @@
-import Banner from '@/components/Section/Banner'
+import BannerTheme from '@/components/Section/BannerTheme'
 import BestSelling from '@/components/Section/BestSelling'
 import Categories from '@/components/Section/Categories'
 import FeatureProduct from '@/components/Section/FeatureProduct'
@@ -8,7 +8,7 @@ import OurProduct from '@/components/Section/OurProduct'
 import Services from '@/components/Section/Services'
 
 export {
-    Banner,
+    BannerTheme,
     BestSelling,
     Categories,
     FeatureProduct,

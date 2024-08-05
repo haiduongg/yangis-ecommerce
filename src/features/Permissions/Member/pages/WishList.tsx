@@ -1,4 +1,3 @@
-import React from 'react'
 import { Helmet } from 'react-helmet-async'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -12,22 +11,24 @@ function WishList() {
     const { wishlist } = useSelector((state: RootState) => state.wishlist)
 
     return (
-        <React.Fragment>
+        <div className="container mx-auto">
             <Helmet>
-                <title>Yêu thích</title>
+                <title>Sản phẩm yêu thích</title>
             </Helmet>
 
-            <div className="mt-[80px]">
+            <div className="mt-[40px]">
                 <div className="flex items-center justify-between">
-                    <p className="text-[20px] leading-[26px]">
-                        Danh sách yêu thích ({wishlist.length ?? 0})
+                    <p className="text-3xl font-semibold">
+                        Sản phẩm yêu thích ({wishlist.length ?? 0})
                     </p>
-                    <Button
-                        variant={'outline'}
-                        className="w-[223px] h-[56px] font-medium"
-                    >
-                        Move All To Cart
-                    </Button>
+                    {wishlist.length > 0 && (
+                        <Button
+                            variant={'outline'}
+                            className="w-[223px] h-[56px] font-medium"
+                        >
+                            Chuyển tất cả vào giỏ hàng
+                        </Button>
+                    )}
                 </div>
                 <div className="mt-[60px] grid grid-cols-5 gap-8">
                     {wishlist.length > 0 &&
@@ -37,7 +38,7 @@ function WishList() {
                                 product={product}
                                 isShowHeart={false}
                                 isShowDelete={true}
-                                isAlwayShowAddToCart={true}
+                                isShowAddToCart={true}
                                 isShowRating={false}
                             />
                         ))}
@@ -84,13 +85,13 @@ function WishList() {
                                 product={product}
                                 isShowHeart={false}
                                 isShowDelete={false}
-                                isAlwayShowAddToCart={true}
+                                isShowAddToCart={true}
                             />
                         ))}
                     </div>
                 </div>
             </div>
-        </React.Fragment>
+        </div>
     )
 }
 
