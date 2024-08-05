@@ -1,13 +1,16 @@
 import { Helmet } from 'react-helmet-async'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import ProductCard from '@/components/ProductCard'
 import { Button } from '@/components/ui/button'
 import products from '@/constants/products'
+import { addMany } from '@/redux/cartSlice'
 import { RootState } from '@/redux/store'
+import { resetWishlist } from '@/redux/wishlistSlice'
 
 function WishList() {
+    const dispatch = useDispatch()
     const { wishlist } = useSelector((state: RootState) => state.wishlist)
 
     return (
@@ -25,6 +28,10 @@ function WishList() {
                         <Button
                             variant={'outline'}
                             className="w-[223px] h-[56px] font-medium"
+                            onClick={() => {
+                                dispatch(addMany(wishlist))
+                                dispatch(resetWishlist())
+                            }}
                         >
                             Chuyển tất cả vào giỏ hàng
                         </Button>

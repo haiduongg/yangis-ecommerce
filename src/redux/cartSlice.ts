@@ -1,6 +1,6 @@
+import IProduct, { IProductWithQuantity } from '@/types/product'
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import IProduct, { IProductWithQuantity } from '@/types/product'
 
 const currentCart: string = localStorage.getItem('_cart') ?? '[]'
 const currentTotal: string = localStorage.getItem('_cart-total') ?? '0'
@@ -42,7 +42,30 @@ export const cartSlice = createSlice({
             localStorage.setItem('_cart', JSON.stringify(state.cart))
             localStorage.setItem('_cart-total', JSON.stringify(state.total))
         },
-        deleteCart: (state, action) => {
+        addMany: (state, action: PayloadAction<IProduct[]>) => {
+            const newProducts = action.payload
+
+            newProducts.forEach((newProduct) => {
+                const foundProductExist = state.cart.findIndex(
+                    (product) => product._id === newProduct._id
+                )
+                if (foundProductExist === -1) {
+                    const newProductWithQuantity = {
+                        ...newProduct,
+                        quantity: 1,
+                    }
+                    state.cart.push(newProductWithQuantity)
+                } else {
+                    state.cart[foundProductExist].quantity++
+                }
+            })
+
+            state.total = calcTotal(state.cart)
+
+            localStorage.setItem('_cart', JSON.stringify(state.cart))
+            localStorage.setItem('_cart-total', JSON.stringify(state.total))
+        },
+        removeCart: (state, action) => {
             const productId = action.payload
             const foundProductIndex = state.cart.findIndex(
                 (product) => product._id === productId
@@ -56,6 +79,11 @@ export const cartSlice = createSlice({
                 state.cart.splice(foundProductIndex, 1)
             }
 
+            localStorage.setItem('_cart', JSON.stringify(state.cart))
+            localStorage.setItem('_cart-total', JSON.stringify(state.total))
+        },
+        removeAll: (state) => {
+            state.cart = []
             localStorage.setItem('_cart', JSON.stringify(state.cart))
             localStorage.setItem('_cart-total', JSON.stringify(state.total))
         },
@@ -83,11 +111,7 @@ export const cartSlice = createSlice({
                         state.total - state.cart[foundProductIndex].price
                     state.cart[foundProductIndex].quantity--
                 } else {
-                    state.total =
-                        state.total -
-                        state.cart[foundProductIndex].price *
-                            state.cart[foundProductIndex].quantity
-                    state.cart.splice(foundProductIndex, 1)
+                    return
                 }
             }
 
@@ -98,7 +122,13 @@ export const cartSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { addCart, deleteCart, incrementQuantity, decrementQuantity } =
-    cartSlice.actions
+export const {
+    addCart,
+    addMany,
+    removeCart,
+    removeAll,
+    incrementQuantity,
+    decrementQuantity,
+} = cartSlice.actions
 
 export default cartSlice.reducer

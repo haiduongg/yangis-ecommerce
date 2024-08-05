@@ -1,12 +1,12 @@
-import { FaRegHeart } from 'react-icons/fa6'
-import { FiEye } from 'react-icons/fi'
+import { FaHeart, FaRegHeart } from 'react-icons/fa6'
 import { LiaCartArrowDownSolid } from 'react-icons/lia'
 import { RiDeleteBin6Line } from 'react-icons/ri'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import { addCart } from '@/redux/cartSlice'
-import { addProduct, deleteProduct } from '@/redux/wishlistSlice'
+import { RootState } from '@/redux/store'
+import { addProduct, removeProduct } from '@/redux/wishlistSlice'
 import IProduct from '@/types/product'
 import { formatMoney } from '@/utils/numberServices'
 
@@ -26,6 +26,15 @@ function ProductCard({
     isShowHeart = true,
 }: IProductCard) {
     const dispatch = useDispatch()
+    const { wishlist } = useSelector((state: RootState) => state.wishlist)
+
+    const isWished: (product: IProduct) => boolean = (product) => {
+        const foundProductExist = wishlist.findIndex(
+            (item) => item._id === product._id
+        )
+        return foundProductExist !== -1 ? true : false
+    }
+
     const calcSalePrice = (origin: number, discount: string) => {
         const saleNumber = discount.slice(0, discount.length - 1)
         return (origin * (+saleNumber / 100)).toString()
@@ -37,13 +46,13 @@ function ProductCard({
     const handleAddWishlist = (product: IProduct) => {
         dispatch(addProduct(product))
     }
-    const handleDeleteWishList = (productId: string) => {
-        dispatch(deleteProduct(productId))
+    const handleRemoveWishList = (productId: string) => {
+        dispatch(removeProduct(productId))
     }
 
     return (
         <div className="group relative bg-white rounded-lg border-[1px] border-transparent hover:border-border hover:shadow-md transition duration-300">
-            <div className="relative h-[250px] rounded-sm flex items-start justify-center select-none">
+            <div className="h-[250px] rounded-sm flex items-start justify-center select-none">
                 {product.discount && (
                     <div className="absolute w-[55px] h-[26px] rounded-sm top-[15px] left-[15px] bg-[#db4444] z-10">
                         <p className="text-center text-white text-xs leading-[26px] tracking-wider font-medium">
@@ -67,30 +76,39 @@ function ProductCard({
                 {isShowDelete === false && (
                     <div className="absolute top-[12px] right-[12px] flex flex-col gap-2">
                         {isShowHeart === true && (
-                            <button
-                                className="p-[9px] rounded-full bg-white hover:bg-neutral-100 transition duration-200"
-                                onClick={() => {
-                                    handleAddWishlist(product)
-                                }}
-                            >
-                                <FaRegHeart size={16} />
-                            </button>
+                            <div>
+                                {!isWished(product) && (
+                                    <button
+                                        className="p-[9px] rounded-full bg-wallground-light hover:bg-[#fee2e2] hover:text-[#dc2626] transition duration-200"
+                                        onClick={() => {
+                                            handleAddWishlist(product)
+                                        }}
+                                        title="Thêm vào danh sách yêu thích"
+                                    >
+                                        <FaRegHeart size={16} />
+                                    </button>
+                                )}
+
+                                {isWished(product) && (
+                                    <button
+                                        className="p-[9px] rounded-full bg-[#fee2e2] text-[#dc2626] transition duration-200"
+                                        onClick={() => {
+                                            handleRemoveWishList(product._id)
+                                        }}
+                                        title="Xóa khỏi danh sách yêu thích"
+                                    >
+                                        <FaHeart size={16} />
+                                    </button>
+                                )}
+                            </div>
                         )}
-                        <Link
-                            to={`/products/${product._id}`}
-                            title={product.name}
-                        >
-                            <button className="p-[9px] rounded-full bg-white hover:bg-neutral-100 transition duration-200">
-                                <FiEye size={16} />
-                            </button>
-                        </Link>
                     </div>
                 )}
                 {isShowDelete === true && (
                     <button
                         className="absolute top-[12px] right-[12px] p-[9px] rounded-full bg-white hover:bg-neutral-100 transition duration-200"
                         onClick={() => {
-                            handleDeleteWishList(product._id)
+                            handleRemoveWishList(product._id)
                         }}
                     >
                         <RiDeleteBin6Line size={16} />

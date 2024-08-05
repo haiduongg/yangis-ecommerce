@@ -1,6 +1,6 @@
+import IProduct from '@/types/product'
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import IProduct from '@/types/product'
 
 const currentWishlist: string = localStorage.getItem('_wishlist') ?? '[]'
 
@@ -16,6 +16,11 @@ export const wishlistSlice = createSlice({
     name: 'wishlist',
     initialState,
     reducers: {
+        resetWishlist: (state) => {
+            state.wishlist = []
+
+            localStorage.setItem('_wishlist', JSON.stringify(state.wishlist))
+        },
         addProduct: (state, action: PayloadAction<IProduct>) => {
             const newProduct = action.payload
             const foundProductExist = state.wishlist.findIndex(
@@ -27,7 +32,7 @@ export const wishlistSlice = createSlice({
 
             localStorage.setItem('_wishlist', JSON.stringify(state.wishlist))
         },
-        deleteProduct: (state, action) => {
+        removeProduct: (state, action) => {
             const productId = action.payload
             const foundProductIndex = state.wishlist.findIndex(
                 (product) => product._id === productId
@@ -40,6 +45,7 @@ export const wishlistSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { addProduct, deleteProduct } = wishlistSlice.actions
+export const { resetWishlist, addProduct, removeProduct } =
+    wishlistSlice.actions
 
 export default wishlistSlice.reducer

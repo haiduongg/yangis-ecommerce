@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet-async'
 import { FaRegHeart } from 'react-icons/fa6'
 import { useDispatch } from 'react-redux'
@@ -68,7 +68,7 @@ function ProductDetail() {
     }, [selection, setSearchParams])
 
     return (
-        <React.Fragment>
+        <div className='container mx-auto'>
             <Helmet>
                 <title>{product.name}</title>
             </Helmet>
@@ -377,7 +377,7 @@ function ProductDetail() {
                 </p>
                 <UserReview data={initReviews} />
             </div>
-        </React.Fragment>
+        </div>
     )
 }
 

@@ -5,13 +5,15 @@ import { FaTicketSimple } from 'react-icons/fa6'
 import { FcApproval } from 'react-icons/fc'
 import { GoGift } from 'react-icons/go'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import Breadcrumbs from '@/components/Breadcrumbs'
 import { Checkbox } from '@/components/ui/checkbox'
 import {
     decrementQuantity,
-    deleteCart,
     incrementQuantity,
+    removeAll,
+    removeCart,
 } from '@/redux/cartSlice'
 import { RootState } from '@/redux/store'
 import { formatMoney } from '@/utils/numberServices'
@@ -27,8 +29,8 @@ function Cart() {
 
     const Shipping = 0
 
-    const handleDeleteCart = (productId: string) => {
-        dispatch(deleteCart(productId))
+    const handleRemoveCart = (productId: string) => {
+        dispatch(removeCart(productId))
     }
 
     const calcSalePrice = (origin: number, discount: string) => {
@@ -67,7 +69,12 @@ function Cart() {
                                         Chọn tất cả ({cart.length})
                                     </label>
                                 </div>
-                                <button title="Xóa tất cả">
+                                <button
+                                    title="Xóa tất cả"
+                                    onClick={() => {
+                                        dispatch(removeAll())
+                                    }}
+                                >
                                     <AiOutlineDelete size={20} />
                                 </button>
                             </div>
@@ -157,7 +164,7 @@ function Cart() {
                                                 <button
                                                     title="Xóa"
                                                     onClick={() => {
-                                                        handleDeleteCart(
+                                                        handleRemoveCart(
                                                             product._id
                                                         )
                                                     }}
@@ -173,90 +180,96 @@ function Cart() {
                             ))}
                         </div>
                         <div className="col-span-1">
-                            <div className="bg-white w-full flex items-center justify-between px-4 py-[10px] rounded-xl">
-                                <div className="flex items-center gap-x-3">
-                                    <GoGift />
-                                    <p className="text-[14px] leading-[24px] font-medium">
-                                        Quà tặng
-                                    </p>
+                            <div className="sticky top-[10px]">
+                                <div className="bg-white w-full flex items-center justify-between px-4 py-[10px] rounded-xl">
+                                    <div className="flex items-center gap-x-3">
+                                        <GoGift />
+                                        <p className="text-[14px] leading-[24px] font-medium">
+                                            Quà tặng
+                                        </p>
+                                    </div>
+                                    <button
+                                        title="Xóa tất cả"
+                                        className="text-[14px] leading-[24px] font-medium opacity-60"
+                                    >
+                                        Xem quà (0)
+                                    </button>
                                 </div>
-                                <button
-                                    title="Xóa tất cả"
-                                    className="text-[14px] leading-[24px] font-medium opacity-60"
-                                >
-                                    Xem quà (0)
-                                </button>
-                            </div>
-                            <div className="mt-[10px] p-4 bg-white rounded-xl flex flex-col gap-3">
-                                <div className="rounded-lg p-3 bg-wallground-light flex items-center justify-between">
-                                    <div className="flex items-center justify-start gap-3">
-                                        <FaTicketSimple
-                                            size={20}
-                                            className="text-[#dc2626]"
-                                        />
+                                <div className="mt-[10px] p-4 bg-white rounded-xl flex flex-col gap-3">
+                                    <button className="rounded-lg p-3 bg-wallground-light flex items-center justify-between">
+                                        <div className="flex items-center justify-start gap-3">
+                                            <FaTicketSimple
+                                                size={20}
+                                                className="text-[#dc2626]"
+                                            />
+                                            <p className="text-[14px] leading-[20px] font-medium">
+                                                Chọn hoặc nhập ưu đãi
+                                            </p>
+                                        </div>
+                                        <FaChevronRight size={13} />
+                                    </button>
+                                    <div className="border rounded-lg flex items-center justify-start gap-3 p-3">
+                                        <FcApproval size={20} />
                                         <p className="text-[14px] leading-[20px] font-medium">
-                                            Chọn hoặc nhập ưu đãi
+                                            Đổi 0 điểm (~0đ)
                                         </p>
                                     </div>
-                                    <FaChevronRight size={13} />
-                                </div>
-                                <div className="border rounded-lg flex items-center justify-start gap-3 p-3">
-                                    <FcApproval size={20} />
-                                    <p className="text-[14px] leading-[20px] font-medium">
-                                        Đổi 0 điểm (~0đ)
-                                    </p>
-                                </div>
-                                <div className="flex flex-col gap-2">
-                                    <p className="text-base leading-[24px] font-medium">
-                                        Thông tin đơn hàng
-                                    </p>
-                                    <div className="flex items-center justify-between">
-                                        <p className="text-xs leading-[18px] opacity-95">
-                                            Tổng tiền
-                                        </p>
+                                    <div className="flex flex-col gap-2">
                                         <p className="text-base leading-[24px] font-medium">
-                                            {formatMoney(total)}
+                                            Thông tin đơn hàng
                                         </p>
+                                        <div className="flex items-center justify-between">
+                                            <p className="text-xs leading-[18px] opacity-95">
+                                                Tổng tiền
+                                            </p>
+                                            <p className="text-base leading-[24px] font-medium">
+                                                {formatMoney(total)}
+                                            </p>
+                                        </div>
+                                        <div className="h-[1px] w-full bg-gray-300" />
+                                        <div className="flex items-center justify-between">
+                                            <p className="text-xs leading-[18px] opacity-95">
+                                                Tổng khuyến mãi
+                                            </p>
+                                            <p className="text-base leading-[24px] font-medium">
+                                                {formatMoney(total)}
+                                            </p>
+                                        </div>
+                                        <div className="flex items-center justify-between">
+                                            <p className="text-xs leading-[18px] opacity-95">
+                                                Phí vận chuyển
+                                            </p>
+                                            <p className="text-xs leading-[18px] font-medium">
+                                                {Shipping === 0
+                                                    ? 'Miễn phí'
+                                                    : formatMoney(Shipping)}
+                                            </p>
+                                        </div>
+                                        <div className="flex items-center justify-between border-t border-gray-300 border-dashed pt-2">
+                                            <p className="text-xs leading-[18px] opacity-95">
+                                                Cần thanh toán
+                                            </p>
+                                            <p className="text-base leading-[24px] font-medium text-red-500">
+                                                {formatMoney(total + Shipping)}
+                                            </p>
+                                        </div>
+                                        <div className="flex items-center justify-between">
+                                            <p className="text-xs leading-[18px] opacity-95">
+                                                Điểm thưởng
+                                            </p>
+                                            <p className="text-base leading-[24px] font-medium">
+                                                +
+                                                {(total / 100).toLocaleString()}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div className="h-[1px] w-full bg-gray-300" />
-                                    <div className="flex items-center justify-between">
-                                        <p className="text-xs leading-[18px] opacity-95">
-                                            Tổng khuyến mãi
-                                        </p>
-                                        <p className="text-base leading-[24px] font-medium">
-                                            {formatMoney(total)}
-                                        </p>
-                                    </div>
-                                    <div className="flex items-center justify-between">
-                                        <p className="text-xs leading-[18px] opacity-95">
-                                            Phí vận chuyển
-                                        </p>
-                                        <p className="text-xs leading-[18px] font-medium">
-                                            {Shipping === 0
-                                                ? 'Miễn phí'
-                                                : formatMoney(Shipping)}
-                                        </p>
-                                    </div>
-                                    <div className="flex items-center justify-between border-t border-gray-300 border-dashed pt-2">
-                                        <p className="text-xs leading-[18px] opacity-95">
-                                            Cần thanh toán
-                                        </p>
-                                        <p className="text-base leading-[24px] font-medium text-red-500">
-                                            {formatMoney(total + Shipping)}
-                                        </p>
-                                    </div>
-                                    <div className="flex items-center justify-between">
-                                        <p className="text-xs leading-[18px] opacity-95">
-                                            Điểm thưởng
-                                        </p>
-                                        <p className="text-base leading-[24px] font-medium">
-                                            +{(total / 100).toLocaleString()}
-                                        </p>
-                                    </div>
+                                    <Link
+                                        to={'/check-out'}
+                                        className="w-full h-[56px] leading-[56px] text-center rounded-md bg-[#df2121] hover:bg-[#b81a1a] text-white font-semibold transition duration-200"
+                                    >
+                                        Xác nhận đơn
+                                    </Link>
                                 </div>
-                                <button className="w-full h-[56px] rounded-md bg-[#df2121] hover:bg-[#b81a1a] text-white font-semibold transition duration-200">
-                                    Xác nhận đơn
-                                </button>
                             </div>
                         </div>
                     </div>
