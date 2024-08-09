@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { BsListNested } from 'react-icons/bs'
 import { FaShoppingCart } from 'react-icons/fa'
 import { FaHeart } from 'react-icons/fa6'
@@ -7,15 +7,15 @@ import { MdPerson } from 'react-icons/md'
 import { useSelector } from 'react-redux'
 import { Link, NavLink } from 'react-router-dom'
 
+import AuthenticationModal from '@/components/Dialog/AuthDialog'
+import Searchbar from '@/components/Fragment/Searchbar'
+import { Dialog, DialogTrigger } from '@/components/ui/dialog'
 import navigates from '@/constants/navigates'
 import { RootState } from '@/redux/store'
 import { IProductWithQuantity } from '@/types/product'
 import { motion } from 'framer-motion'
 
-import Searchbar from './Fragment/Searchbar'
-
 export default function Navbar() {
-    const [isShowNavigates, setIsShowNavigates] = useState<boolean>(true)
     const [isExtendSearchbar, setIsExtendSearchbar] = useState<boolean>(false)
 
     const { cart } = useSelector((state: RootState) => state.cart)
@@ -26,21 +26,6 @@ export default function Navbar() {
             cart.forEach((product) => (total += product.quantity))
             return total
         }
-
-    // const controlNavbar = () => {
-    //     if (window.scrollY > 250 ) {
-    //         setShow(true)
-    //     }else{
-    //       setShow(false)
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     window.addEventListener('scroll', controlNavbar)
-    //     return () => {
-    //         window.removeEventListener('scroll', controlNavbar)
-    //     }
-    // }, [])
 
     return (
         <div className="py-4 px-5 bg-gradient-to-tr from-[#cb1c22] to-[#d9503f] text-white">
@@ -130,13 +115,17 @@ export default function Navbar() {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                         >
-                            <Link
-                                to={'/login'}
-                                className="size-[44px] p-[6px] bg-[#6a151b] rounded-full flex items-center justify-center gap-3"
-                                title="Đăng ký / Đăng nhập"
-                            >
-                                <MdPerson size={24} />
-                            </Link>
+                            <Dialog>
+                                <DialogTrigger asChild>
+                                    <button
+                                        className="size-[44px] p-[6px] bg-[#6a151b] rounded-full flex items-center justify-center gap-3"
+                                        title="Đăng ký / Đăng nhập"
+                                    >
+                                        <MdPerson size={24} />
+                                    </button>
+                                </DialogTrigger>
+                                <AuthenticationModal />
+                            </Dialog>
                         </motion.div>
 
                         <motion.div
